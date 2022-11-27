@@ -1,4 +1,6 @@
 $random-color: purple;
 
-
-  
+.random_gradient {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(79, 9, 121, 1) 0%, rgba(96, 51, 148, 1) 0%, rgba(94, 55, 150, 1) 0%, rgba(52, 136, 148, 1) 0%, rgba(92, 59, 152, 1) 0%, rgba(189, 169, 235, 1) 0%, rgba(78, 82, 168, 1) 100%, rgba(0, 184, 222, 1) 100%);
+}
