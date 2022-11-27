@@ -1,0 +1,36 @@
+{
+  "name": "football-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": { 
+    "start": "nodemon --inspect src/index.js",
+    "watch":"node-sass --watch src/resources/scss/ --output src/public/css/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelthinh/nodejs_football-management.git"
+  },
+  "keywords": [
+    "football",
+    "management",
+    "football",
+    "management"
+  ],
+  "author": "michael_thinh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelthinh/nodejs_football-management/issues"
+  },
+  "homepage": "https://github.com/michaelthinh/nodejs_football-management#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "node-sass": "^8.0.0",
+    "nodemon": "^2.0.20"
+  }
+}
