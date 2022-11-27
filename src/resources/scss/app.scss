@@ -7,4 +7,16 @@
 
 .custom_navbar_item:hover{
     background-color:darkgray;
+    font-weight:500;
 }
+
+.custom_navbar_item_logout{
+    width:100%;
+    color:red;
+}
+
+.custom_navbar_item_logout:hover{
+    background-color: red;
+    color:white;
+}
+
