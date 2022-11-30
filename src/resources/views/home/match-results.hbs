@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div class="row">
+
+
+        {{>navbar}}
+        <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
+            <div class="section_title">MATCH RESULTS</div>
+            <div class="mt-4">
+                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Add a score from player </button>
+            </div>
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <form>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="inputFirstname">Team 1</label>
+                                    <input type="text" class="form-control" id="inputFirstname">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="inputLastname">Team 2</label>
+                                    <input type="text" class="form-control" id="inputLastname">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="inputAddressLine1">Score</label>
+                                    <input type="text" class="form-control" id="inputAddressLine1">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="inputAddressLine2">Stadium</label>
+                                    <input type="text" class="form-control" id="inputAddressLine2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="inputCity">Date</label>
+                                    <input type="text" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="inputState">Time</label>
+                                    <input type="text" class="form-control" id="inputState">
+                                </div>
+
+                            </div>
+
+                            <table class="table mt-4">
+                                <thead style="text-align:center">
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Player</th>
+                                        <th scope="col">Team</th>
+                                        <th scope="col">Type of Score</th>
+                                        <th scope="col">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align:center">
+                                    <tr>
+                                        <td>data</td>
+                                        <td>data</td>
+                                        <td>data</td>
+                                        <td>data</td>
+                                        <td>data</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <button type="button" class="mt-4 btn btn-primary px-4 float-right">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

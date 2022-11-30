@@ -3,28 +3,28 @@
     <div class=" row d-flex justify-content-center align-items-center">
       
       <div  class="col-md-8 col-lg-8 col-xl-4">
-        <form>
+        <form method="POST" action="/log-in/check">
           <!-- Email input -->
           <div class="form-outline mb-3">
-            <label class="" for="email">EMAIL ADDRESS</label>
-            <input type="email" id="email" name="email" class="form-control "
-              placeholder="Enter your email address" />
+            <label for="username">USERNAME</label>
+            <input type="text" id="username" class="form-control" name="username"
+              placeholder="Enter your username" />
             
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
-            <label class="" for="password">PASSWORD</label>
-            <input type="password" id="password" name="password" class="form-control "
+            <label for="password">PASSWORD</label>
+            <input type="password" id="password" class="form-control" name="password"
               placeholder="Enter your password" />   
           </div>
 
           
 
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" class="btn btn-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">LOGIN</button>
-          </div>
+          <a href="/main" class="text-center text-lg-start mt-4 pt-2">
+            <button class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">LOGIN</button  >
+          </a>
 
         </form>
       </div>

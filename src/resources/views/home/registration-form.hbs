@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row">
+
+
+        {{>navbar}}
+        <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
+
+
+
+
+
+            <div class="section_title">TEAMS INFORMATION</div>
+
+
+            <div class="mt-4">
+                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Add team </button>
+            <button class=" btn btn-primary btn-sm check-all-submit-btn">Edit team</button>
+            </div>
+
+
+
+            <table class="table mt-4">
+                <thead style="text-align:center">
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Team's Name</th>
+                        <th scope="col">Team's Stadium</th>
+                        <th scope="col">Number Of Players</th>
+                        <th scope="col">Note</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    <tr>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="form-popup" id="myForm">
+                <form action="/action_page.php" class="form-container">
+                    <h3>Player's Information</h3>
+
+                    <label for="name"><b>Name</b></label>
+                    <input type="text" name="name" required>
+
+                    <label for="date"><b>Date of birth</b></label>
+                    <input type="text" name="date" required>
+
+                    <label for="type"><b>Player's type</b></label>
+                    <input type="text" name="type" required>
+
+                    <label for="note"><b>Password</b></label>
+                    <input type="text" name="note" required>
+
+                    <button type="submit" class="btn">Create</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
