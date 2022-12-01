@@ -4,75 +4,101 @@
 
         {{>navbar}}
         <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
-
-
-
-
-
-            <div class="section_title">TEAMS INFORMATION</div>
-
-
-            <div class="mt-4">
-                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Add team </button>
-            <button class=" btn btn-primary btn-sm check-all-submit-btn">Edit team</button>
+            <div class="section_title">ĐĂNG KÝ ĐỘI BÓNG</div>
+            <div class="mt-4" style="justify-content:right;align-items:right;text-align:right">
+                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Thêm cầu thủ</button>
             </div>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <form>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="inputFirstname">Tên đội</label>
+                                    <input type="text" class="form-control" id="inputFirstname">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="inputLastname">Sân vận động</label>
+                                    <input type="text" class="form-control" id="inputLastname">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="inputAddressLine1">Ngày thành lập</label>
+                                    <input type="text" class="form-control" id="inputAddressLine1">
+                                </div>
+                                <div class="col-sm-6">
+                                    
+                                </div>
+                            </div>
+                          
+                            
 
+                            <table class="table mt-4">
+                                
+                                <p class="mt-4 fw-bold">Danh sách cầu thủ</p>
+                                <thead style="text-align:center">
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên cầu thủ</th>
+                                        <th scope="col">Ngày tháng năm sinh</th>
+                                        <th scope="col">Loại cầu thủ</th>
+                                        <th scope="col">Ghi chú</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align:center">
+                                    <tr>
+                                        <td>data</td>
+                                        <td>data</td>
+                                        <td>data</td>
+                                        <td>data</td>
+                                        <td>data</td>
+                                        <td>
+                                            <a href="" class="btn btn-sm btn-danger" data-id="" data-bs-toggle=""
+                        data-bs-target="">Delete</a>
 
-
-            <table class="table mt-4">
-                <thead style="text-align:center">
-                    <tr>
-                        <th scope="col">STT</th>
-                        <th scope="col">Team's Name</th>
-                        <th scope="col">Team's Stadium</th>
-                        <th scope="col">Number Of Players</th>
-                        <th scope="col">Note</th>
-                    </tr>
-                </thead>
-                <tbody style="text-align:center">
-                    <tr>
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="form-popup" id="myForm">
-                <form action="/action_page.php" class="form-container">
-                    <h3>Player's Information</h3>
-
-                    <label for="name"><b>Name</b></label>
-                    <input type="text" name="name" required>
-
-                    <label for="date"><b>Date of birth</b></label>
-                    <input type="text" name="date" required>
-
-                    <label for="type"><b>Player's type</b></label>
-                    <input type="text" name="type" required>
-
-                    <label for="note"><b>Password</b></label>
-                    <input type="text" name="note" required>
-
-                    <button type="submit" class="btn">Create</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-center">
+                            <button type="button" class="btn btn-primary">Lưu lại</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-
-
     </div>
 </div>
 
+ <div class="form-popup" id="add-player">
+                <form action="" class="form-container">
+                    <h3>Thông tin cầu thủ</h3>
+
+                    <label for="name"><b>Tên cầu thủ</b></label>
+                    <input type="text" name="name" required>
+
+                    <label for="date"><b>Ngày tháng năm sinh</b></label>
+                    <input type="text" name="date" required>
+
+                    <label for="type"><b>Loại cầu thủ</b></label>
+                    <input type="text" name="type" required>
+
+                    <label for="note"><b>Ghi chú</b></label>
+                    <input type="text" name="note" required>
+
+                    <button type="submit" class="btn">Tạo cầu thủ</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Đóng</button>
+                </form>
+            </div>
 
 <script>
     function openForm() {
-        document.getElementById("myForm").style.display = "block";
+        document.getElementById("add-player").style.display = "block";
     }
-
     function closeForm() {
-        document.getElementById("myForm").style.display = "none";
+        document.getElementById("add-player").style.display = "none";
     }
 </script>

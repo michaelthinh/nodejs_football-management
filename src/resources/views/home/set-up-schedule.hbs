@@ -4,19 +4,20 @@
 
         {{>navbar}}
        <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
-        <div class="section_title">SET UP SCHEDULE</div>
-        <div class="mt-4">
-                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Add one match</button>
+        <div class="section_title">ĐẶT LỊCH THI ĐẤU</div>
+        <div class="mt-4" style="justify-content:right;align-items:right;text-align:right">
+                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Thêm trận đấu</button>
             </div>
-        <div class="mt-4"><b>Match Info</b></div>
+        <div class="mt-4"><b>Thông tin các trận đấu</b></div>
           <table class="table mt-4">
                 <thead style="text-align:center">
                     <tr>
                         <th scope="col">STT</th>
-                        <th scope="col">Team 1</th>
-                        <th scope="col">Team 2</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Stadium</th>
+                        <th scope="col">Đội 1</th>
+                        <th scope="col">Đội 2</th>
+                        <th scope="col">Ngày thi đấu</th>
+                        <th scope="col">Sân thi đấu</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody style="text-align:center">
@@ -26,9 +27,43 @@
                         <td>data</td>
                         <td>data</td>
                         <td>data</td>
+                        <td>
+                             <a href="" class="btn btn-sm btn-danger" data-id="" data-bs-toggle=""
+                        data-bs-target="">Delete</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+ <div class="form-popup" id="add-match">
+                <form action="" class="form-container">
+                    <h3>Thêm trận đấu</h3>
+
+                    <label for="name"><b>Đội bóng 1</b></label>
+                    <input type="text" name="name" required>
+
+                    <label for="date"><b>Đội bóng 2</b></label>
+                    <input type="text" name="date" required>
+
+                    <label for="type"><b>Ngày thi đấu</b></label>
+                    <input type="text" name="type" required>
+
+                    <label for="note"><b>Sân thi đấu</b></label>
+                    <input type="text" name="note" required>
+
+                    <button type="submit" class="btn">Tạo cặp trận</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Đóng</button>
+                </form>
+            </div>
+
+<script>
+    function openForm() {
+        document.getElementById("add-match").style.display = "block";
+    }
+    function closeForm() {
+        document.getElementById("add-match").style.display = "none";
+    }
+</script>

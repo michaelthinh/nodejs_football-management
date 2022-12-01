@@ -1,9 +1,73 @@
 <div class="container-fluid">
     <div class="row">
-        
+
 
         {{>navbar}}
-        <div class="col-sm p-3 min-vh-100" style="background-image:url(./playground_assets/rectangle1129-0ahg-800h.png)">
+        <div class="col-lg min-vh-100" style="background-color:#FFF2FF">
+
+
+
+
+
+            <div class="section_title">THÔNG TIN CÁC ĐỘI BÓNG</div>
+
+
+            <div style="justify-content:right;align-items:right;text-align:right" class="mt-4">
+                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Thêm đội</button>
+            </div>
+
+
+
+            <table class="table mt-4">
+                <thead style="text-align:center">
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên đội</th>
+                        <th scope="col">Sân vận động</th>
+                        <th scope="col">Số lượng cầu thủ</th>
+                        <th scope="col">Ghi chú</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    <tr>
+
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                            <a href="" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#delete-team-modal">Xóa</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<div id="delete-team-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Team</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Your team will be deleted! Are you confirmed to do that?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-team" type="button" class="btn btn-danger">Confirmed</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+            </div>
         </div>
     </div>
 </div>
