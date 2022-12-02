@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+
+
+        {{>navbar}}
+        <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
+            <div class="section_title">ĐĂNG KÝ ĐỘI BÓNG</div>
+
+            <div class="container mt-4 align-items-center">
+                <div class="row ">
+                    <div class="col-md-10 mx-auto">
+                        <form method="POST" action="/registration-form/store">
+                            <div class="mb-3">
+                                <label for="clubName" class="form-label">Tên đội</label>
+                                <input type="text" class="form-control" id="clubName" name="clubName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="stadium" class="form-label">Sân vận động</label>
+                                <input type="text" class="form-control" id="stadium" name="stadium">
+                            </div>
+                            <div class="mb-3">
+                                <label for="note" class="form-label">Ghi chú</label>
+                                <input type="text" class="form-control" id="note" name="note">
+                            </div>
+                            <div class="mt-4 text-center">
+                                <button type="submit" class="btn btn-primary">Lưu lại</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

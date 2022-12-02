@@ -1,30 +1,19 @@
+const { Club } = require("../models/Club");
+const { multipleMongooseToObject } = require("../../util/mongoose");
 class SiteController {
-  index(req, res) {
-    res.render("home");
+  index(req, res, next) {
+    Club.find({})
+      .then((clubs) => {
+        res.render("home", {
+          clubs: multipleMongooseToObject(clubs),
+        });
+      })
+      .catch(next);
   }
-
-  registrationForm(req, res) {
-    res.render("home/registration-form");
-  }
-
-  setUpSchedule(req, res) {
-    res.render("home/set-up-schedule");
-  }
-
-  matchResults(req, res) {
-    res.render("home/match-results");
-  }
-
-  searchingForPlayer(req, res) {
-    res.render("home/searching-for-player");
-  }
-
-  tournamentReport(req, res) {
-    res.render("home/tournament-report");
-  }
-
-  rulesChanging(req, res) {
-    res.render("home/rules-changing");
+  destroy(req, res, next) {
+    Club.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect("/home"))
+      .catch(next);
   }
 }
 

@@ -13,7 +13,9 @@
 
 
             <div style="justify-content:right;align-items:right;text-align:right" class="mt-4">
-                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Thêm đội</button>
+                <a href="/registration-form">
+                    <button class=" btn btn-primary btn-sm check-all-submit-btn">Thêm đội</button>
+                </a>
             </div>
 
 
@@ -30,19 +32,20 @@
                     </tr>
                 </thead>
                 <tbody style="text-align:center">
+                    {{#each clubs}}
                     <tr>
-
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
+                        <td>{{sum @index 1}}</td>
+                        <td>{{this.clubName}}</td>
+                        <td>{{this.stadium}}</td>
+                        <td>{{count this.players}}</td>
+                        <td>{{this.note}}</td>
                         <td>
-                            <a href="" class="btn btn-sm btn-primary">Chỉnh sửa</a>
-                            <a href="" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#delete-team-modal">Xóa</a>
+                            <a href="" data-id="" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                            <a href="" class="btn btn-sm btn-danger" data-id="{{this._id}}" data-target="#delete-club-modal" data-bs-toggle="modal"
+                                data-bs-target="#delete-club-modal">Xóa</a>
                         </td>
                     </tr>
+                    {{/each}}
                 </tbody>
             </table>
 
@@ -53,21 +56,45 @@
     </div>
 </div>
 
-<div id="delete-team-modal" class="modal" tabindex="-1">
+<div id="delete-club-modal" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Delete Team</h5>
+                <h5 class="modal-title">Xóa đội</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Your team will be deleted! Are you confirmed to do that?</p>
+                <p>Đội của bạn sẽ bị xóa vĩnh viễn! Bạn có chắc chắn?</p>
             </div>
             <div class="modal-footer">
-                <button id="btn-delete-team" type="button" class="btn btn-danger">Confirmed</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="btn-delete-club" type="button" class="btn btn-danger" >Chắc chắn</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
 
             </div>
         </div>
     </div>
 </div>
+
+<form name="delete-club-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var clubId;
+        var deleteForm = document.forms["delete-club-form"];
+            
+        var btnDeleteClub = document.getElementById("btn-delete-club");
+
+        $("#delete-club-modal").on("show.bs.modal",function(event){
+            var button=$(event.relatedTarget);
+            clubId=button.data("id");
+            console.log(clubId);
+        })
+
+        // When confirmed button clicked
+        btnDeleteClub.onclick = function () {
+            deleteForm.action = "/home/" + clubId + "/force?_method=DELETE";
+            deleteForm.submit();
+        }
+
+    });
+</script>

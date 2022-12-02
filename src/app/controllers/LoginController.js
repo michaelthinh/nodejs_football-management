@@ -6,24 +6,21 @@ class LoginController {
     res.render("log-in");
   }
   check(req, res, next) {
-    const userData = [
-      {
-        username: "cat",
-        password: "123",
-      },
-    ];
-    const nguoidung = new User(userData);
-    nguoidung
-      .save()
-      .then(() => res.redirect("/home"))
-      .catch((error) => {});
+    User.findOne({ username: req.body.username })
+      .then((user) => {
+        user = MongooseToObject(user);
+        if (user === null) {
+          res.redirect("/log-in");
+        } else {
+          if (user.password === req.body.password) {
+            res.redirect("/home");
+          } else {
+            res.redirect("/log-in");
+          }
+        }
+      })
+      .catch(next);
   }
 }
-
-// Course.findOne({ slug: req.params.slug })
-// .then((course) => {
-//   res.render("courses/show", { course: MongooseToObject(course) });
-// })
-// .catch(next);
 
 module.exports = new LoginController();

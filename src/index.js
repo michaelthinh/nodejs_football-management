@@ -5,6 +5,7 @@ const methodOverride = require("method-override");
 const hbs = require("express-handlebars");
 const app = express();
 const port = 3000;
+const session = require("express-session");
 
 const route = require("./routes");
 const db = require("./config/db");
@@ -27,12 +28,32 @@ app.use(methodOverride("_method"));
 // HTTP logger
 // app.use(morgan("combined"));
 
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    secret: "'keyboard cat'",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+
 // Template engine
 app.engine(
   "hbs",
   hbs.engine({
     extname: ".hbs",
     encoding: "utf8",
+    helpers: {
+      sum: (a, b) => a + b,
+      count: (a) => {
+        let counter = 0;
+        for (let i = 0; i < a.length; i++) {
+          counter++;
+        }
+        return counter;
+      },
+    },
   })
 );
 app.set("view engine", "hbs");
