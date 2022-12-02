@@ -5,7 +5,7 @@
         {{>navbar}}
         <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
             <div class="section_title">TRA CỨU CẦU THỦ</div>
-            <form class="ms-4 mt-4 mb-4">
+            <form id="targetForm" method="GET" class="ms-4 mt-4 mb-4" action="/searching-for-player/search">
                 <div class="row">
                     <div style="max-width:450px" class="col ">
                         <div class="row">
@@ -15,8 +15,7 @@
                             </div>
                             <div style="max: width 250px" class="col">
 
-                                <input type="email" class="form-control" id="name" name="name"
-                                    aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                         </div>
                     </div>
@@ -29,28 +28,13 @@
 
 
                 </div>
-
+            
             </form>
-            <div class="card ms-4 " style="max-width:600px;border-radius: 15px;">
-                <div class="card-body p-4">
-                    <div class="d-flex text-black">
-                        <div class="flex-shrink-0">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                                alt="Generic placeholder image" class="img-fluid"
-                                style="width: 180px; border-radius: 10px;">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="mb-1">Tên:</h5>
-                            <p class="mb-2 pb-1" style="color: #2b2a2a;">Đội bóng đang chơi:</p>
-                            <p>Ngày sinh:</p>
-                            <p>Loại cầu thủ:</p>
-                            <p>Ngày tham gia giải:</p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+           
         </div>
     </div>
 </div>
+
+<script>
+
+</script>

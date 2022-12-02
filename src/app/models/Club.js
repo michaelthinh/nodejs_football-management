@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-
+const slug = require("mongoose-slug-generator");
 const Schema = mongoose.Schema;
+mongoose.plugin(slug);
 
 const clubs = new Schema({
-  clubId: { type: Schema.Types.ObjectId, ref: "Club" },
-  clubName: { type: String },
+  clubName: { type: String, required: true },
+  slug: { type: String, slug: "clubName", unique: true },
   stadium: { type: String },
-  note: { type: String },
   players: { type: Array },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

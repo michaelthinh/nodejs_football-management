@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+
+
+        {{>navbar}}
+        <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
+            <div class="section_title">TRA CỨU CẦU THỦ</div>
+            {{#each player}}
+            <div class="card mt-4 ms-4 " style="max-width:600px;border-radius: 15px;">
+                <div class="card-body mt-4 p-4">
+                    <div class="d-flex text-black">
+                        <div class="flex-shrink-0">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                                alt="Generic placeholder image" class="img-fluid"
+                                style="width: 180px; border-radius: 10px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h5 class="mb-1">Tên: {{this.name}}</h5>
+                            <p class="mb-2 pb-1" style="color: #2b2a2a;">Đội bóng đang chơi: </p>
+                            <p>Ngày sinh: {{this.birthday}}</p>
+                            <p>Loại cầu thủ: {{this.playerType}}</p>
+                            <p>Ngày tham gia giải: {{this.createdAt}}</p>
+                            <p>Tổng số bàn thắng hiện tại: {{this.goals}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

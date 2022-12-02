@@ -1,5 +1,6 @@
 const { Club } = require("../models/Club");
 const { multipleMongooseToObject } = require("../../util/mongoose");
+
 class SiteController {
   index(req, res, next) {
     Club.find({})
