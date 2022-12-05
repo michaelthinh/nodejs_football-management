@@ -12,7 +12,7 @@
           <table class="table mt-4">
                 <thead style="text-align:center">
                     <tr>
-                        <th scope="col">STT</th>
+                        <th scope="col">Vòng đấu</th>
                         <th scope="col">Đội 1</th>
                         <th scope="col">Đội 2</th>
                         <th scope="col">Ngày thi đấu</th>
@@ -20,18 +20,22 @@
                         <th></th>
                     </tr>
                 </thead>
+                
                 <tbody style="text-align:center">
+                    {{#each schedule}}
                     <tr>
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
-                        <td>data</td>
+                        <td>{{this.round}}</td>
+                        <td>{{this.firstClub}}</td>
+                        <td>{{this.secondClub}}</td>
+                        <td>{{this.date}}</td>
+                        <td>{{this.stadium}}</td>
                         <td>
-                             <a href="" class="btn btn-sm btn-danger" data-id="" data-bs-toggle=""
-                        data-bs-target="">Delete</a>
+                            <a href="" class="btn btn-sm btn-danger" data-id="{{this._id}}"
+                                        data-target="#delete-schedule-modal" data-bs-toggle="modal"
+                                        data-bs-target="#delete-schedule-modal">Xóa</a>
                         </td>
                     </tr>
+                    {{/each}}
                 </tbody>
             </table>
         </div>
@@ -39,22 +43,31 @@
 </div>
 
  <div class="form-popup" id="add-match">
-                <form action="" class="form-container">
-                    <h3>Thêm trận đấu</h3>
+                <form method="POST" action="/set-up-schedule/store" class="form-container">
+                    <h3>Thêm cặp đấu</h3>
+                    
+                    <label for="round"><b>Vòng đấu</b></label>
+                    <input type="text" name="round" required>
 
-                    <label for="name"><b>Đội bóng 1</b></label>
-                    <input type="text" name="name" required>
+                    <label for="firstClub"><b>Đội bóng 1</b></label>
+                    <input type="text" name="firstClub" required>
 
-                    <label for="date"><b>Đội bóng 2</b></label>
+                    <label for="secondClub"><b>Đội bóng 2</b></label>
+                    <input type="text" name="secondClub" required>
+
+                    <label for="date"><b>Ngày thi đấu</b></label>
                     <input type="text" name="date" required>
 
-                    <label for="type"><b>Ngày thi đấu</b></label>
-                    <input type="text" name="type" required>
+                    <label for="stadium"><b>Sân thi đấu</b></label>
+                    <input type="text" name="stadium" required>
+                    <div style="display:none">
+                    <label for="firstScore"></label>
+                    <input type="number" name="firstScore" value="0">
 
-                    <label for="note"><b>Sân thi đấu</b></label>
-                    <input type="text" name="note" required>
-
-                    <button type="submit" class="btn">Tạo cặp trận</button>
+                    <label for="secondScore"></label>
+                    <input type="number" name="secondScore" value="0">
+                    </div>
+                    <button type="submit" class="btn">Tạo cặp đấu</button>
                     <button type="button" class="btn cancel" onclick="closeForm()">Đóng</button>
                 </form>
             </div>
@@ -66,4 +79,45 @@
     function closeForm() {
         document.getElementById("add-match").style.display = "none";
     }
+</script>
+
+<div id="delete-schedule-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa vòng đấu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Vong đầu giữa hai đội sẽ bị xóa! Bạn có chắc chắn?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-schedule" type="button" class="btn btn-danger" >Chắc chắn</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="delete-schedule-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var scheduleId;
+        var deleteForm = document.forms["delete-schedule-form"];
+            
+        var btnDeleteschedule = document.getElementById("btn-delete-schedule");
+
+        $("#delete-schedule-modal").on("show.bs.modal",function(event){
+            var button=$(event.relatedTarget);
+            scheduleId=button.data("id");
+        })
+
+        // When confirmed button clicked
+        btnDeleteschedule.onclick = function () {
+            deleteForm.action = "/set-up-schedule/" + scheduleId + "/force?_method=DELETE";
+            deleteForm.submit();
+        }
+    });
 </script>

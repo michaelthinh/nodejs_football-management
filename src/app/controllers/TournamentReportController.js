@@ -4,8 +4,11 @@ const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 
 class TournamentReport {
-  index(req, res) {
+  showClub(req, res) {
     res.render("tournament-report");
+  }
+  showPlayer(req, res) {
+    res.render("tournament-report-sub");
   }
 }
 

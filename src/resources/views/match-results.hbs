@@ -1,114 +1,38 @@
 <div class="container-fluid">
     <div class="row">
-
+        
 
         {{>navbar}}
-        <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
-            <div class="section_title">KẾT QUẢ TRẬN ĐẤU</div>
-            <div class="mt-4" style="justify-content:right;align-items:right;text-align:right">
-                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Thêm bàn thắng</button>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <form>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <label for="inputFirstname">Đội 1</label>
-                                    <input type="text" class="form-control" id="inputFirstname">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="inputLastname">Đội 2</label>
-                                    <input type="text" class="form-control" id="inputLastname">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <label for="inputAddressLine1">Tỉ số</label>
-                                    <input type="text" class="form-control" id="inputAddressLine1">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="inputAddressLine2">Sân vận động</label>
-                                    <input type="text" class="form-control" id="inputAddressLine2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <label for="inputCity">Ngày</label>
-                                    <input type="text" class="form-control" id="inputCity">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="inputState">Giờ</label>
-                                    <input type="text" class="form-control" id="inputState">
-                                </div>
-
-                            </div>
-
-                            
-
-                            <table class="table mt-4">
-                                <p class="mt-4 fw-bold">Danh sách cầu thủ ghi bàn</p>
-                                <thead style="text-align:center">
-                                    <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Tên cầu thủ</th>
-                                        <th scope="col">Đội bóng</th>
-                                        <th scope="col">Loại bàn thắng</th>
-                                        <th scope="col">Thời điểm ghi bàn</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody style="text-align:center">
-                                    <tr>
-                                        <td>data</td>
-                                        <td>data</td>
-                                        <td>data</td>
-                                        <td>data</td>
-                                        <td>data</td>
-                                        <td>
-                                             <a href="" class="btn btn-sm btn-danger" data-id="" data-bs-toggle=""
-                        data-bs-target="">Delete</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="text-center">
-                            <button type="button" class="btn btn-primary">Lưu lại</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+       <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
+        <div class="section_title">CÁC TRẬN ĐẤU HIỆN CÓ</div>
+        <div class="mt-4"><b>Thông tin các trận đấu</b></div>
+          <table class="table mt-4">
+                <thead style="text-align:center">
+                    <tr>
+                        <th scope="col">Vòng đấu</th>
+                        <th scope="col">Đội 1</th>
+                        <th scope="col">Đội 2</th>
+                        <th scope="col">Ngày thi đấu</th>
+                        <th scope="col">Sân thi đấu</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                
+                <tbody style="text-align:center">
+                    {{#each schedule}}
+                    <tr>
+                        <td>{{this.round}}</td>
+                        <td>{{this.firstClub}}</td>
+                        <td>{{this.secondClub}}</td>
+                        <td>{{this.date}}</td>
+                        <td>{{this.stadium}}</td>
+                        <td>
+                            <a href="/match-results/{{this._id}}/show" class="btn btn-sm btn-primary" data-id="{{this._id}}">Xem kết quả trận đấu</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
- <div class="form-popup" id="add-goal">
-                <form action="" class="form-container">
-                    <h3>Thêm bàn thắng</h3>
-
-                    <label for="name"><b>Tên cầu thủ</b></label>
-                    <input type="text" name="name" required>
-
-                    <label for="date"><b>Tên đội bóng</b></label>
-                    <input type="text" name="date" required>
-
-                    <label for="type"><b>Loại bàn thắng</b></label>
-                    <input type="text" name="type" required>
-
-                    <label for="note"><b>Thời gian ghi bàn</b></label>
-                    <input type="text" name="note" required>
-
-                    <button type="submit" class="btn">Tạo cặp trận</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Đóng</button>
-                </form>
-            </div>
-
-<script>
-    function openForm() {
-        document.getElementById("add-goal").style.display = "block";
-    }
-    function closeForm() {
-        document.getElementById("add-goal").style.display = "none";
-    }
-</script>
