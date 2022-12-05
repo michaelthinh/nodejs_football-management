@@ -4,11 +4,12 @@ const Schema = mongoose.Schema;
 mongoose.plugin(slug);
 const players = new Schema({
   name: { type: String },
-  slug: { type: String, slug: "name", unique: true },
+  slugId: { type: String, slug: "name", unique: true },
   birthday: { type: Date },
   typePlayer: { type: String },
   goals: { type: Number },
   createdAt: { type: Date, default: Date.now },
+  slugTeam: { type: String },
 });
 
 const Player = mongoose.model("players", players);

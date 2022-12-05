@@ -1,15 +1,12 @@
 <div class="container-fluid">
     <div class="row">
-
-
         {{>navbar}}
-        <div class="mt-4 col-sm min-vh-100" style="background-color:#FFF2FF">
-            <div class="section_title">CHỈNH SỬA ĐỘI BÓNG</div>
-
+        <div class=" col-sm min-vh-100" style="background-color:#FFF2FF">
+            <div class="section_title">XEM VÀ CHỈNH SỬA ĐỘI BÓNG</div>
             <div class="container mt-4 align-items-center">
                 <div class="row ">
                     <div class="col-md-10 mx-auto">
-                        <form method="POST" action="/registration-form/store">
+                        <form method="POST" action="/home/{{club.slug}}?_method=PUT">
                             <div class="mb-3">
                                 <label for="clubName" class="form-label">Tên đội</label>
                                 <input type="text" class="form-control" value="{{club.clubName}}" id="clubName" name="clubName">

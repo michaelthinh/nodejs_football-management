@@ -5,6 +5,12 @@
         {{>navbar}}
         <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
             <div class="section_title">TRA CỨU CẦU THỦ</div>
+            <div style="justify-content:right;align-items:right;text-align:right" class="mt-4">
+                <a href="/searching-for-player">
+                    <button class=" btn btn-primary btn-sm check-all-submit-btn">Quay lại</button>
+                </a>
+            </div>
+
             {{#each player}}
             <div class="card mt-4 ms-4 " style="max-width:600px;border-radius: 15px;">
                 <div class="card-body mt-4 p-4">
@@ -18,7 +24,7 @@
                             <h5 class="mb-1">Tên: {{this.name}}</h5>
                             <p class="mb-2 pb-1" style="color: #2b2a2a;">Đội bóng đang chơi: </p>
                             <p>Ngày sinh: {{this.birthday}}</p>
-                            <p>Loại cầu thủ: {{this.playerType}}</p>
+                            <p>Loại cầu thủ: {{this.typePlayer}}</p>
                             <p>Ngày tham gia giải: {{this.createdAt}}</p>
                             <p>Tổng số bàn thắng hiện tại: {{this.goals}}</p>
                         </div>
@@ -26,6 +32,7 @@
                 </div>
             </div>
             {{/each}}
+
         </div>
     </div>
 </div>

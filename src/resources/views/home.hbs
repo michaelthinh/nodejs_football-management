@@ -26,8 +26,6 @@
                         <th scope="col">STT</th>
                         <th scope="col">Tên đội</th>
                         <th scope="col">Sân vận động</th>
-                        <th scope="col">Số lượng cầu thủ</th>
-                       
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -37,10 +35,8 @@
                         <td>{{sum @index 1}}</td>
                         <td>{{this.clubName}}</td>
                         <td>{{this.stadium}}</td>
-                        <td>{{count this.players}}</td>
-                        
                         <td>
-                            <a href="/home/{{this.slug}}/edit" data-id="" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                            <a href="/club/{{this.slug}}" data-id="" class="btn btn-sm btn-primary">Xem chi tiết</a>
                             <a href="" class="btn btn-sm btn-danger" data-id="{{this._id}}" data-target="#delete-club-modal" data-bs-toggle="modal"
                                 data-bs-target="#delete-club-modal">Xóa</a>
                         </td>
