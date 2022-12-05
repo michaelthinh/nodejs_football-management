@@ -4,10 +4,11 @@ const { MongooseToObject } = require("../../util/mongoose");
 
 class RulesChangingRouter {
   index(req, res, next) {
-    Rule.find({})
-      .then((rules) => {
-        res.render("rules-changing", {
-          rules: multipleMongooseToObject(rules),
+    const dieuhuong = req.params.id;
+    Rule.findOne({ slug: dieuhuong })
+      .then((rule) => {
+        res.render("rule/" + dieuhuong, {
+          rule: MongooseToObject(rule),
         });
       })
       .catch(next);

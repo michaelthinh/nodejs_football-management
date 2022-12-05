@@ -10,23 +10,22 @@
                 
                
                
-               
-                <div class="col-sm-3 mt-4  mb-4">
+                {{#each rules}}
+                <div class="col-sm-3 mt-4 me-4 ms-4 mb-4">
                     <div class="card">
-                        <a href="">
+                        <a href="/rule/{{this.slug}}">
                             <img style="max-height:100px" width="50%" class="card-img-top img-fluid"
                                 src="https://media.geeksforgeeks.org/wp-content/uploads/20210724024414/135deg2-660x322.png"
                                 alt="Card image cap">
                         </a>
                         <div style="max-height:400px" class="card-block">
-                            <p class="mt-2 card-text text-center fw-bold">RULES 1</p>
-                            <p class="me-1 ms-2">context</p>
-                            
+                            <h3 class="mt-2 card-text text-center fw-bold">{{this.name}}</h3>
+                            <p class="me-1 ms-2">{{this.description}}</p>  
                         </div>
 
                     </div>
                 </div>
-
+                {{/each}}
 
             </div>
         </div>

@@ -7,6 +7,7 @@ const tournamentReportRouter = require("./tournament-report");
 const matchResultsRouter = require("./match-results");
 const setUpScheduleRouter = require("./set-up-schedule");
 const clubRouter = require("./club");
+const ruleRouter = require("./rule");
 const playerRouter = require("./player");
 function route(app) {
   app.use("/home", siteRouter);
@@ -18,6 +19,7 @@ function route(app) {
   app.use("/player", playerRouter);
   app.use("/club", clubRouter);
   app.use("/rules-changing", rulesChangingRouter);
+  app.use("/rule", ruleRouter);
   app.use("/log-in", loginRouter);
 }
 
