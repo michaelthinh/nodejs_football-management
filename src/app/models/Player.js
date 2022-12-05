@@ -10,6 +10,7 @@ const players = new Schema({
   goals: { type: Number },
   createdAt: { type: Date, default: Date.now },
   slugTeam: { type: String },
+  note: { type: String },
 });
 
 const Player = mongoose.model("players", players);

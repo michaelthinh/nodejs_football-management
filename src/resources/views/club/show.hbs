@@ -3,56 +3,106 @@
         {{>navbar}}
         <div class=" col-sm min-vh-100" style="background-color:#FFF2FF">
             <div class="section_title">XEM VÀ CHỈNH SỬA ĐỘI BÓNG</div>
+            <div style="justify-content:right;align-items:right;text-align:right" class="mt-4">
+                <a href="/club/{{club.slug}}/add">
+                    <button class=" btn btn-primary btn-sm check-all-submit-btn">Thêm cầu thủ cho đội</button>
+                </a>
+            </div>
             <div class="container mt-4 align-items-center">
                 <div class="row ">
                     <div class="col-md-10 mx-auto">
-                        
-                            <div class="mb-3">
-                                <p>Tên đội: {{club.clubName}}</p>
-                            </div>
-                            <div class="mb-3">
-                                <p>ID đội: {{club.slug}}</p>
-                            </div>
-                            <div class="mb-3">
-                                <p>Sân vận động: {{club.stadium}}</p>
-                            </div>
-                            <div class="mb-3">
-                                <p>Số lượng cầu thủ: {{numberPlayers}}</p>
-                            </div>
-                            
+
+                        <div class="mb-3">
+                            <p>Tên đội: {{club.clubName}}</p>
+                        </div>
+                        <div class="mb-3">
+                            <p>ID đội: {{club.slug}}</p>
+                        </div>
+                        <div class="mb-3">
+                            <p>Sân vận động: {{club.stadium}}</p>
+                        </div>
+                        <div class="mb-3">
+                            <p>Số lượng cầu thủ: {{numberPlayers}}</p>
+                        </div>
+
                     </div>
                     <div class="mt-4">
                         <b>Danh sách cầu thủ</b>
                     </div>
                     <table class="table mt-4">
-                <thead style="text-align:center">
-                    <tr>
-                        <th scope="col">STT</th>
-                        <th scope="col">Tên cầu thủ</th>
-                        <th scope="col">Loại cầu thủ</th>
+                        <thead style="text-align:center">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên cầu thủ</th>
+                                <th scope="col">Ngày sinh</th>
+                                <th scope="col">Loại cầu thủ</th>
 
-                        <th scope="col">Ghi chú</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody style="text-align:center">
-                    {{#each players}}
-                    <tr>
-                        <td>{{sum @index 1}}</td>
-                        <td>{{this.name}}</td>
-                        
-                        <td>{{this.typePlayer}}</td>
-                        <td>data</td>
-                        <td>
-                           
-                            <a href="" data-id="" class="btn btn-sm btn-primary">Chỉnh sửa</a>
-                            <a href="" class="btn btn-sm btn-danger" data-id="{{this._id}}" data-target="#delete-club-modal" data-bs-toggle="modal"
-                                data-bs-target="#delete-club-modal">Xóa</a>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </tbody>
+                                <th scope="col">Ghi chú</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:center">
+                            {{#each players}}
+                            <tr>
+                                <td>{{sum @index 1}}</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.birthday}}</td>
+                                <td>{{this.typePlayer}}</td>
+                                <td>{{this.note}}</td>
+                                <td>
+
+                                    <a href="" data-id="" class="btn btn-sm btn-primary">Chỉnh sửa</a>
+                                    <a href="" class="btn btn-sm btn-danger" data-id="{{this._id}}"
+                                        data-target="#delete-player-modal" data-bs-toggle="modal"
+                                        data-bs-target="#delete-player-modal">Xóa</a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div id="delete-player-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa cầu thủ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Cầu thủ của đội sẽ bị xóa! Bạn có chắc chắn?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-player" type="button" class="btn btn-danger" >Chắc chắn</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="delete-player-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var playerId;
+        var deleteForm = document.forms["delete-player-form"];
+            
+        var btnDeleteplayer = document.getElementById("btn-delete-player");
+
+        $("#delete-player-modal").on("show.bs.modal",function(event){
+            var button=$(event.relatedTarget);
+            playerId=button.data("id");
+            console.log(playerId);
+        })
+
+        // When confirmed button clicked
+        btnDeleteplayer.onclick = function () {
+            deleteForm.action = "/club/" + playerId + "/force?_method=DELETE";
+            deleteForm.submit();
+        }
+    });
+</script>
