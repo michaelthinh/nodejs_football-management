@@ -21,10 +21,9 @@ class ClubController {
   store(req, res, next) {
     const formData = { ...req.body };
     const player = new Player(formData);
-    console.log(formData);
     player
       .save()
-      .then(() => res.redirect("/home"))
+      .then(() => res.redirect("/club/" + player.slugTeam))
       .catch((error) => {});
   }
   updateClub(req, res, next) {
