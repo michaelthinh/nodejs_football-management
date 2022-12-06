@@ -53,6 +53,7 @@ app.engine(
         }
         return counter;
       },
+      getByKey: (data, key) => data[key],
     },
   })
 );

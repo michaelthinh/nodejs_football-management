@@ -3,6 +3,7 @@ const { Club } = require("../models/Club");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 const { Schedule } = require("../models/Schedule");
+
 class MatchResults {
   index(req, res, next) {
     Schedule.find({})
@@ -21,6 +22,12 @@ class MatchResults {
     });
   }
   update(req, res, next) {
+    if (req.body.firstScore > req.body.secondScore) {
+      req.body.teamWin = req.body.slugFirst;
+    }
+    if (req.body.firstScore < req.body.secondScore) {
+      req.body.teamWin = req.body.slugSecond;
+    }
     Schedule.updateOne({ _id: req.params.id }, req.body)
       .then(() => {
         console.log(req.params.id);

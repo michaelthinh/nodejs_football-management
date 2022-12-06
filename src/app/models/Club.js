@@ -10,6 +10,7 @@ const clubs = new Schema({
   players: { type: Array },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+  qualified: { type: Boolean, default: false },
 });
 
 const Club = mongoose.model("clubs", clubs);

@@ -1,5 +1,6 @@
 const { Club } = require("../models/Club");
 const { Player } = require("../models/Player");
+const { Rule } = require("../models/Rule");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 
@@ -7,12 +8,24 @@ class ClubController {
   async index(req, res, next) {
     const players = await Player.find({ slugTeam: req.params.id });
     const club = await Club.findOne({ slug: req.params.id });
+    const ruleOne = await Rule.findOne({ slug: "rule-1" });
+    const maxPlayer = ruleOne.maxPlayer;
+    const minPlayer = ruleOne.minPlayer;
     const numberPlayers = players.length;
-    res.render("club/show", {
-      players: multipleMongooseToObject(players),
-      club: MongooseToObject(club),
-      numberPlayers,
-    });
+    if (numberPlayers >= minPlayer && numberPlayers <= maxPlayer) {
+      club.qualified = true;
+    } else {
+      club.qualified = false;
+    }
+    Club.updateOne({ slug: req.params.id }, club)
+      .then(() => {
+        res.render("club/show", {
+          players: multipleMongooseToObject(players),
+          club: MongooseToObject(club),
+          numberPlayers,
+        });
+      })
+      .catch(next);
   }
   addPlayer(req, res, next) {
     let clubId = req.params.id;

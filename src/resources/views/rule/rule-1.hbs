@@ -6,7 +6,7 @@
             <div class="container mt-4 align-items-center">
                 <div class="row ">
                     <div class="col mx-auto">
-                        <form method="POST" >
+                        <form method="POST" action="/rule/{{rule.slug}}?_method=PUT">
                             <div class="mb-3">
                                 <label for="maxAge" class="form-label">Độ tuổi tối đa: </label>
                                 <input type="text" class="form-control"  id="maxAge" name="maxAge" value="{{rule.maxAge}}">
