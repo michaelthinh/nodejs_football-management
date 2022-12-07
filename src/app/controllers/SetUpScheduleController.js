@@ -12,13 +12,15 @@ class SetUpSchedule {
       .catch(next);
   }
   store(req, res, next) {
-    const formData = { ...req.body };
+    const formData = req.body;
     const schedule = new Schedule(formData);
-    console.log(formData);
     schedule
       .save()
       .then(() => res.redirect("/set-up-schedule"))
-      .catch((error) => {});
+      .catch(next);
+  }
+  create(req, res, next) {
+    res.render("match-results/create");
   }
   destroy(req, res, next) {
     Schedule.deleteOne({ _id: req.params.id })

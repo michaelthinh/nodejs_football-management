@@ -1,6 +1,7 @@
 const { Club } = require("../models/Club");
 const { Player } = require("../models/Player");
 const { Rule } = require("../models/Rule");
+const { ClubScore } = require("../models/ClubScore");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 
@@ -17,6 +18,7 @@ class ClubController {
     } else {
       club.qualified = false;
     }
+
     Club.updateOne({ slug: req.params.id }, club)
       .then(() => {
         res.render("club/show", {

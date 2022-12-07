@@ -16,7 +16,7 @@ class RulesChangingRouter {
   update(req, res, next) {
     Rule.updateOne({ slug: req.params.id }, req.body)
       .then(() => {
-        res.redirect("/rules-changing");
+        res.redirect("/tournament-report");
       })
       .catch(next);
   }

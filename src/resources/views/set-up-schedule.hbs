@@ -1,15 +1,18 @@
 <div class="container-fluid">
     <div class="row">
-        
+
 
         {{>navbar}}
-       <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
-        <div class="section_title">ĐẶT LỊCH THI ĐẤU</div>
-        <div class="mt-4" style="justify-content:right;align-items:right;text-align:right">
-                <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()">Thêm trận đấu</button>
+        <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
+            <div class="section_title">ĐẶT LỊCH THI ĐẤU</div>
+          
+            <div style="justify-content:right;align-items:right;text-align:right" class="mt-4">
+                <a href="/set-up-schedule/create">
+                    <button class=" btn btn-primary btn-sm check-all-submit-btn">Thêm đội</button>
+                </a>
             </div>
-        <div class="mt-4"><b>Thông tin các trận đấu</b></div>
-          <table class="table mt-4">
+            <div class="mt-4"><b>Thông tin các trận đấu</b></div>
+            <table class="table mt-4">
                 <thead style="text-align:center">
                     <tr>
                         <th scope="col">Vòng đấu</th>
@@ -20,19 +23,19 @@
                         <th></th>
                     </tr>
                 </thead>
-                
+
                 <tbody style="text-align:center">
                     {{#each schedule}}
                     <tr>
                         <td>{{this.round}}</td>
-                        <td>{{this.firstClub}}</td>
-                        <td>{{this.secondClub}}</td>
+                        <td>{{this.slugFirst}}</td>
+                        <td>{{this.slugSecond}}</td>
                         <td>{{this.date}}</td>
                         <td>{{this.stadium}}</td>
                         <td>
                             <a href="" class="btn btn-sm btn-danger" data-id="{{this._id}}"
-                                        data-target="#delete-schedule-modal" data-bs-toggle="modal"
-                                        data-bs-target="#delete-schedule-modal">Xóa</a>
+                                data-target="#delete-schedule-modal" data-bs-toggle="modal"
+                                data-bs-target="#delete-schedule-modal">Xóa</a>
                         </td>
                     </tr>
                     {{/each}}
@@ -42,45 +45,8 @@
     </div>
 </div>
 
- <div class="form-popup" id="add-match">
-                <form method="POST" action="/set-up-schedule/store" class="form-container">
-                    <h3>Thêm cặp đấu</h3>
-                    
-                    <label for="round"><b>Vòng đấu</b></label>
-                    <input type="text" name="round" required>
 
-                    <label for="firstClub"><b>Đội bóng 1</b></label>
-                    <input type="text" name="firstClub" required>
 
-                    <label for="secondClub"><b>Đội bóng 2</b></label>
-                    <input type="text" name="secondClub" required>
-
-                    <label for="date"><b>Ngày thi đấu</b></label>
-                    <input type="text" name="date" required>
-
-                    <label for="stadium"><b>Sân thi đấu</b></label>
-                    <input type="text" name="stadium" required>
-                    <div style="display:none">
-                    <label for="firstScore"></label>
-                    <input type="number" name="firstScore" value="0">
-                    <label for="secondScore"></label>
-                    <input type="number" name="secondScore" value="0">
-                    <label for="teamWin"></label>
-                    <input type="text" name="teamWin" value="tie">
-                    </div>
-                    <button type="submit" class="btn">Tạo cặp đấu</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Đóng</button>
-                </form>
-            </div>
-
-<script>
-    function openForm() {
-        document.getElementById("add-match").style.display = "block";
-    }
-    function closeForm() {
-        document.getElementById("add-match").style.display = "none";
-    }
-</script>
 
 <div id="delete-schedule-modal" class="modal" tabindex="-1">
     <div class="modal-dialog">
@@ -93,7 +59,7 @@
                 <p>Vong đầu giữa hai đội sẽ bị xóa! Bạn có chắc chắn?</p>
             </div>
             <div class="modal-footer">
-                <button id="btn-delete-schedule" type="button" class="btn btn-danger" >Chắc chắn</button>
+                <button id="btn-delete-schedule" type="button" class="btn btn-danger">Chắc chắn</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
 
             </div>
@@ -107,12 +73,12 @@
     document.addEventListener('DOMContentLoaded', function () {
         var scheduleId;
         var deleteForm = document.forms["delete-schedule-form"];
-            
+
         var btnDeleteschedule = document.getElementById("btn-delete-schedule");
 
-        $("#delete-schedule-modal").on("show.bs.modal",function(event){
-            var button=$(event.relatedTarget);
-            scheduleId=button.data("id");
+        $("#delete-schedule-modal").on("show.bs.modal", function (event) {
+            var button = $(event.relatedTarget);
+            scheduleId = button.data("id");
         })
 
         // When confirmed button clicked

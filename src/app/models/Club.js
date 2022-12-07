@@ -5,7 +5,7 @@ mongoose.plugin(slug);
 
 const clubs = new Schema({
   clubName: { type: String, required: true },
-  slug: { type: String, slug: "clubName", unique: true },
+  slug: { type: String, slug: "clubName" },
   stadium: { type: String },
   players: { type: Array },
   createdAt: { type: Date, default: Date.now },

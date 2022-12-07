@@ -15,7 +15,9 @@
             </div>
 
 
-
+            <div class="mt-4 mb-4 text-center">
+                <b>Kết quả hiện tại</b>
+            </div>
             <div class="d-flex row ms-4">
                 <div class="col-2 mt-4 mb-4 text-center">
                     <ul style="list-style-type: none">
@@ -31,6 +33,44 @@
                         {{#each wins}}
                         <li class="mt-4 mb-4">{{this}}</li>
                         {{/each}}
+                    </ul>
+                </div>
+                <div class="col-2 mt-4 mb-4 text-center">
+                    <ul style="list-style-type: none">
+                        <li class="fw-bold">Số trận thua</li>
+                        {{#each loses}}
+                        <li class="mt-4 mb-4">{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="col-2 mt-4 mb-4 text-center">
+                    <ul style="list-style-type: none">
+                        <li class="fw-bold">Số trận hòa</li>
+                       {{#each ties}}
+                        <li class="mt-4 mb-4">{{this}}</li>
+                        {{/each}}
+                        <li class="mt-4 mb-4"></li>
+                     
+                    </ul>
+                </div>
+                <div class="col-2 mt-4 mb-4 text-center">
+                    <ul style="list-style-type: none">
+                        <li class="fw-bold">Tổng số trận</li>
+                         {{#each matches}}
+                        <li class="mt-4 mb-4">{{this}}</li>
+                        {{/each}}
+                        <li class="mt-4 mb-4"></li>
+                   
+                    </ul>
+                </div>
+                <div class="col-2 mt-4 mb-4 text-center">
+                    <ul style="list-style-type: none">
+                        <li class="fw-bold">Tổng điểm</li>
+                         {{#each points}}
+                        <li class="mt-4 mb-4">{{this}}</li>
+                        {{/each}}
+                        <li class="mt-4 mb-4"></li>
+                   
                     </ul>
                 </div>
             </div>
