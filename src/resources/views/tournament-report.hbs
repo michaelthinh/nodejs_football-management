@@ -29,6 +29,16 @@
                 </div>
                 <div class="col-2 mt-4 mb-4 text-center">
                     <ul style="list-style-type: none">
+                        <li class="fw-bold">Tổng số trận</li>
+                         {{#each matches}}
+                        <li class="mt-4 mb-4">{{this}}</li>
+                        {{/each}}
+                        <li class="mt-4 mb-4"></li>
+                   
+                    </ul>
+                </div>
+                <div class="col-2 mt-4 mb-4 text-center">
+                    <ul style="list-style-type: none">
                         <li class="fw-bold">Số trận thắng</li>
                         {{#each wins}}
                         <li class="mt-4 mb-4">{{this}}</li>
@@ -53,16 +63,7 @@
                      
                     </ul>
                 </div>
-                <div class="col-2 mt-4 mb-4 text-center">
-                    <ul style="list-style-type: none">
-                        <li class="fw-bold">Tổng số trận</li>
-                         {{#each matches}}
-                        <li class="mt-4 mb-4">{{this}}</li>
-                        {{/each}}
-                        <li class="mt-4 mb-4"></li>
-                   
-                    </ul>
-                </div>
+                
                 <div class="col-2 mt-4 mb-4 text-center">
                     <ul style="list-style-type: none">
                         <li class="fw-bold">Tổng điểm</li>
