@@ -34,7 +34,6 @@ class MatchResults {
     }
     Schedule.updateOne({ _id: req.params.id }, req.body)
       .then(() => {
-        console.log(req.params.id);
         res.redirect("/match-results");
       })
       .catch(next);
@@ -42,26 +41,31 @@ class MatchResults {
   async store(req, res, next) {
     const formData = req.body;
     const idPlayer = formData.slugPlayer;
-    console.log(idPlayer);
-    let banthang = 0;
-    const player = await Player.findOne({ slugId: idPlayer }).then((player) => {
-      banthang = player.goals;
-    });
-    banthang = banthang + 1;
-    const updatePlayer = await Player.findOneAndUpdate(
-      { slugId: idPlayer },
-      {
-        $set: {
-          goals: banthang,
-        },
-      }
-    );
-    console.log(updatePlayer);
-    const score = new Score(formData);
-    score
-      .save()
-      .then(() => res.redirect("/match-results"))
-      .catch(next);
+    const match = await Schedule.findOne({ _id: req.params.id });
+    const score = await Score.find({ slugMatch: req.params.id });
+    let err = true;
+    let banthang;
+    const playerFound = await Player.findOne({ slugId: idPlayer });
+    if (playerFound === null) {
+      res.render("match-results/show", {
+        err,
+        match: MongooseToObject(match),
+        score: multipleMongooseToObject(score),
+      });
+    } else {
+      banthang = playerFound.goals + 1;
+      const updatePlayer = await Player.findOneAndUpdate(
+        { slugId: idPlayer },
+        {
+          $set: {
+            goals: banthang,
+          },
+        }
+      );
+      const updateScore = new Score(formData);
+      updateScore.save();
+      res.redirect("/match-results/" + req.params.id + "/show");
+    }
   }
 }
 

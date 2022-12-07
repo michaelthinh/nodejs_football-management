@@ -7,7 +7,7 @@ const clubs = new Schema({
   clubName: { type: String, required: true },
   slug: { type: String, slug: "clubName" },
   stadium: { type: String },
-  players: { type: Array },
+  numberForeinger: { type: Number },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
   qualified: { type: Boolean, default: false },

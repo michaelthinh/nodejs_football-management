@@ -1,3 +1,4 @@
+const { TRUE } = require("node-sass");
 const { Club } = require("../models/Club");
 const { ClubScore } = require("../models/ClubScore");
 class RegistrationFormController {
@@ -6,6 +7,7 @@ class RegistrationFormController {
   }
   async store(req, res, next) {
     const formData = { ...req.body };
+
     let newClubScore = {
       name: formData.clubName,
       wins: 0,
@@ -14,14 +16,18 @@ class RegistrationFormController {
       points: 0,
     };
     const clubscore = new ClubScore(newClubScore);
-
-    clubscore.save();
+    let err;
+    clubscore.save().catch((next) => {
+      err = TRUE;
+      res.render("registration-form", { err: err });
+    });
     const clubs = new Club(formData);
     clubs
       .save()
       .then(() => res.redirect("/home"))
       .catch((next) => {
-        res.redirect("/home");
+        err = TRUE;
+        res.render("registration-form", { err: err });
       });
   }
 }

@@ -9,33 +9,35 @@
                         <form method="POST" action="/club/{{clubId}}/store">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Tên cầu thủ</label>
-                                <input type="text" class="form-control"  id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="mb-3" style="display:none">
                                 <label for="slugTeam" class="form-label">Id đội</label>
-                                <input type="text" class="form-control" value="{{clubId}}" id="slugTeam" name="slugTeam">
+                                <input type="text" class="form-control" value="{{clubId}}" id="slugTeam"
+                                    name="slugTeam">
                             </div>
                             <div class="mb-3" style="display:none">
                                 <label for="goals" class="form-label">Số bàn thắng</label>
                                 <input type="text" class="form-control" value="0" id="goals" name="goals">
                             </div>
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="birthday" class="form-label">Ngày sinh</label>
-                                <input type="text" class="form-control"  id="birthday" name="birthday">
+                                <input type="text" class="form-control" id="birthday" name="birthday">
                             </div>
                             <div class="mb-3">
                                 <label for="typePlayer" class="form-label">Loại cầu thủ</label>
-                                <select class="form-control form-control-sm checkbox-select-all-options" name="typePlayer" required="required" >
-                <option value="Nội">Nội</option>
-                <option value="Ngoại">Ngoại</option>
-            </select>
+                                <select class="form-control form-control-sm checkbox-select-all-options"
+                                    name="typePlayer" required="required">
+                                    <option value="Nội">Nội</option>
+                                    <option value="Ngoại">Ngoại</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="note" class="form-label">Ghi chú</label>
-                                <input type="text" class="form-control"  id="note" name="note">
+                                <input type="text" class="form-control" id="note" name="note">
                             </div>
-                           
-                           
+
+
 
                             <div class="mt-4 text-center">
                                 <button type="submit" class="btn btn-primary">Lưu lại</button>

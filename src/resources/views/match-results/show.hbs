@@ -5,6 +5,11 @@
         {{>navbar}}
         <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
             <div class="section_title">KẾT QUẢ TRẬN ĐẤU</div>
+             {{#if err}}
+            <div class="mt-4 text-center" style="display:block">
+                <b style="color:red">Cầu thủ đã nhập hoặc thời gian ghi bàn không hợp lệ</b>
+            </div>
+            {{/if}}
             <div class="mt-4" style="justify-content:right;align-items:right;text-align:right">
                 <button class=" btn btn-primary btn-sm check-all-submit-btn" onclick="openForm()" >Thêm bàn
                     thắng</button>
@@ -90,8 +95,9 @@
                                     <td>{{this.scoreMinute}}</td>
                                     
                                     <td>
-                                        <a href="" class="btn btn-sm btn-danger" data-id="" data-bs-toggle=""
-                                            data-bs-target="">Delete</a>
+                                        <a href="" class="btn btn-sm btn-danger" data-id="{{this._id}}"
+                                        data-target="#delete-playerscore-modal" data-bs-toggle="modal"
+                                        data-bs-target="#delete-playerscore-modal">Xóa</a>
                                     </td>
                                     
                                 </tr>
@@ -134,4 +140,46 @@
     function closeForm() {
         document.getElementById("add-goal").style.display = "none";
     }
+</script>
+
+<div id="delete-playerscore-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa bàn thắng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bàn thắng của cầu thủ sẽ bị xóa! Bạn có chắc chắn?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-playerscore" type="button" class="btn btn-danger" >Chắc chắn</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="delete-playerscore-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var playerscoreId;
+        var deleteForm = document.forms["delete-playerscore-form"];
+            
+        var btnDeleteplayerscore = document.getElementById("btn-delete-playerscore");
+
+        $("#delete-playerscore-modal").on("show.bs.modal",function(event){
+            var button=$(event.relatedTarget);
+            playerscoreId=button.data("id");
+          
+        })
+
+        // When confirmed button clicked
+        btnDeleteplayerscore.onclick = function () {
+            deleteForm.action = "/score/" + playerscoreId + "/force?_method=DELETE";
+            deleteForm.submit();
+        }
+    });
 </script>

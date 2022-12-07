@@ -2,7 +2,7 @@
     <div class="row">
         {{>navbar}}
         <div class=" col-sm min-vh-100" style="background-color:#FFF2FF">
-            <div class="section_title">THÊM CẦU THỦ</div>
+            <div class="section_title">CHỈNH SỬA CẦU THỦ</div>
             <div class="container mt-4 align-items-center">
                 <div class="row ">
                     <div class="col-md-10 mx-auto">
@@ -17,7 +17,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="typePlayer" class="form-label">Loại cầu thủ</label>
-                                <input type="text" class="form-control" value="{{player.typePlayer}}" id="typePlayer" name="typePlayer">
+                                <select class="form-control form-control-sm checkbox-select-all-options"
+                                    name="typePlayer" required="required">
+                                    <option value="Nội">Nội</option>
+                                    <option value="Ngoại">Ngoại</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="note" class="form-label">Ghi chú</label>

@@ -10,7 +10,7 @@ const clubscores = new Schema({
   loses: { type: Number },
   ties: { type: Number },
   points: { type: Number },
-  slug: { type: String, slug: "name", unique: true },
+  slug: { type: String, slug: "name" },
 });
 
 const ClubScore = mongoose.model("clubscores", clubscores);

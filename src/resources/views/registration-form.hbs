@@ -6,6 +6,12 @@
         <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
             <div class="section_title">ĐĂNG KÝ ĐỘI BÓNG</div>
 
+             {{#if err}}
+            <div class="mt-4 text-center" style="display:block">
+                <b style="color:red">Không thể thêm đội bóng trùng với đội bóng đã tồn tại</b>
+            </div>
+            {{/if}}
+
             <div class="container mt-4 align-items-center">
                 <div class="row ">
                     <div class="col-md-10 mx-auto">
@@ -22,6 +28,11 @@
                                 <label for="qualified" class="form-label"></label>
                                 <input style="display:none" type="text" class="form-control" id="qualified"
                                     name="qualified" value="false">
+                            </div>
+                            <div class="mb-3">
+                                <label for="numberForeinger" class="form-label"></label>
+                                <input style="display:none" type="number" class="form-control" id="numberForeinger"
+                                    name="numberForeinger" value="0">
                             </div>
                             <div class="mt-4 text-center">
                                 <button type="submit" class="btn btn-primary">Lưu lại</button>

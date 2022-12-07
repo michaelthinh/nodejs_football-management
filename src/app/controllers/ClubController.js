@@ -33,9 +33,21 @@ class ClubController {
     let clubId = req.params.id;
     res.render("player/create", { clubId });
   }
-  store(req, res, next) {
+  async store(req, res, next) {
     const formData = { ...req.body };
+
     const player = new Player(formData);
+    const clubFound = await Club.findOne({ slug: formData.slugTeam });
+    if (formData.typePlayer === "Ngoại") {
+      const updateClub = await Club.findOneAndUpdate(
+        { slug: formData.slugTeam },
+        {
+          $set: {
+            numberForeinger: clubFound.numberForeinger + 1,
+          },
+        }
+      );
+    }
     player
       .save()
       .then(() => res.redirect("/club/" + player.slugTeam))
@@ -57,6 +69,17 @@ class ClubController {
   }
   async destroy(req, res, next) {
     const player = await Player.findOne({ _id: req.params.id });
+    const clubFound = await Club.findOne({ slug: player.slugTeam });
+    if (player.typePlayer === "Ngoại") {
+      const updateClub = await Club.findOneAndUpdate(
+        { slug: player.slugTeam },
+        {
+          $set: {
+            numberForeinger: clubFound.numberForeinger - 1,
+          },
+        }
+      );
+    }
     const clubId = player.slugTeam;
     Player.deleteOne({ _id: req.params.id })
       .then(() => res.redirect("/club/" + clubId))
