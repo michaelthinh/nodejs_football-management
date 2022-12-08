@@ -3,37 +3,44 @@
         {{>navbar}}
         <div class=" col-sm min-vh-100" style="background-color:#FFF2FF">
             <div class="section_title">{{rule.name}}</div>
+            {{#if err}}
+            <div class="mt-4 text-center" style="display:block">
+                <b style="color:red">Các dữ liệu đã nhập không hợp lệ</b>
+            </div>
+
+            {{/if}}
             <div class="container mt-4 align-items-center">
                 <div class="row ">
                     <div class="col mx-auto">
                         <form method="POST" action="/rule/{{rule.slug}}?_method=PUT">
                             <div class="mb-3">
                                 <label for="maxAge" class="form-label">Độ tuổi tối đa: </label>
-                                <input type="text" class="form-control"  id="maxAge" name="maxAge" value="{{rule.maxAge}}">
+                                <input type="text" class="form-control" id="maxAge" name="maxAge"
+                                    value="{{rule.maxAge}}">
                             </div>
                             <div class="mb-3">
                                 <label for="minAge" class="form-label">Độ tuổi tối thiểu: </label>
-                                <input type="text" class="form-control"  id="minAge" name="minAge" value="{{rule.minAge}}">
+                                <input type="text" class="form-control" id="minAge" name="minAge"
+                                    value="{{rule.minAge}}">
                             </div>
                             <div class="mb-3">
                                 <label for="maxPlayer" class="form-label">Số lượng cầu thủ tối đa: </label>
-                                <input type="text" class="form-control"  id="maxPlayer" name="maxPlayer" value="{{rule.maxPlayer}}">
+                                <input type="text" class="form-control" id="maxPlayer" name="maxPlayer"
+                                    value="{{rule.maxPlayer}}">
                             </div>
                             <div class="mb-3">
                                 <label for="minPlayer" class="form-label">Số lượng cầu thủ tối thiểu: </label>
-                                <input type="text" class="form-control"  id="minPlayer" name="minPlayer" value="{{rule.minPlayer}}">
+                                <input type="text" class="form-control" id="minPlayer" name="minPlayer"
+                                    value="{{rule.minPlayer}}">
                             </div>
                             <div class="mb-3">
                                 <label for="maxForeigner" class="form-label">Số lượng cầu thủ ngoại tối đa: </label>
-                                <input type="text" class="form-control"  id="maxForeigner" name="maxForeigner" value="{{rule.maxForeigner}}">
+                                <input type="text" class="form-control" id="maxForeigner" name="maxForeigner"
+                                    value="{{rule.maxForeigner}}">
                             </div>
                             <div class="mb-3 text-center fw-bold">
                                 <p>Nội dung: {{rule.description}}</p>
                             </div>
-                            
-                           
-                           
-
                             <div class="mt-4 text-center">
                                 <button type="submit" class="btn btn-primary">Lưu lại</button>
                             </div>
@@ -41,5 +48,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+</div>

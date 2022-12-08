@@ -7,7 +7,7 @@ const rules = new Schema({
   maxAge: { type: Number },
   minPlayer: { type: Number },
   maxPlayer: { type: Number },
-  maxForeiner: { type: Number },
+  maxForeigner: { type: Number },
   maxScoreTime: { type: Number },
   winScore: { type: Number },
   loseScore: { type: Number },

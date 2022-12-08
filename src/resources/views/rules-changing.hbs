@@ -6,10 +6,14 @@
         <div class="col-sm min-vh-100" style="background-color:#FFF2FF">
             <div class="section_title">THAY ĐỔI LUẬT LỆ</div>
             <div class=" mt-4 me-2 mb-4 ms-2 row">
-                
-                
-               
-               
+                {{#if err}}
+                <div class="mt-4 text-center" style="display:block">
+                    <b style="color:red">Các dữ liệu đã nhập không hợp lệ</b>
+                </div>
+                {{/if}}
+
+
+
                 {{#each rules}}
                 <div class="col-sm-3 mt-4 me-4 ms-4 mb-4">
                     <div class="card">
@@ -20,7 +24,7 @@
                         </a>
                         <div style="max-height:400px" class="card-block">
                             <h3 class="mt-2 card-text text-center fw-bold">{{this.name}}</h3>
-                            <p class="me-1 ms-2 text-left">{{this.description}}</p>  
+                            <p class="me-1 ms-2 text-left">{{this.description}}</p>
                         </div>
 
                     </div>

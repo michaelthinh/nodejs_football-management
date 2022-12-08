@@ -32,6 +32,10 @@ class MatchResults {
       req.body.teamWin = req.body.slugSecond;
       req.body.teamLose = req.body.slugFirst;
     }
+    // if (req.body.firstScore === req.body.secondScore) {
+    //   req.body.teamWin = "tie";
+    //   req.body.teamLose = "tie";
+    // }
     Schedule.updateOne({ _id: req.params.id }, req.body)
       .then(() => {
         res.redirect("/match-results");
@@ -54,17 +58,58 @@ class MatchResults {
       });
     } else {
       banthang = playerFound.goals + 1;
-      const updatePlayer = await Player.findOneAndUpdate(
-        { slugId: idPlayer },
-        {
-          $set: {
-            goals: banthang,
-          },
+      const clubFound = await Schedule.findOne({
+        $or: [
+          { slugFirst: playerFound.slugTeam },
+          { slugSecond: playerFound.slugTeam },
+        ],
+      });
+      if (clubFound === null) {
+        res.render("match-results/show", {
+          err,
+          match: MongooseToObject(match),
+          score: multipleMongooseToObject(score),
+        });
+      } else {
+        const updatePlayer = await Player.findOneAndUpdate(
+          { slugId: idPlayer },
+          {
+            $set: {
+              goals: banthang,
+            },
+          }
+        );
+        let clubGoal = await Schedule.findOne({
+          slugFirst: playerFound.slugTeam,
+        });
+        if (clubGoal === null) {
+          clubGoal = await Schedule.findOne({
+            slugSecond: playerFound.slugTeam,
+          });
+          let banthang = clubGoal.secondScore;
+          let temp = await Schedule.findOneAndUpdate(
+            { slugSecond: playerFound.slugTeam },
+            {
+              $set: {
+                secondScore: banthang + 1,
+              },
+            }
+          );
+        } else {
+          let banthang = clubGoal.firstScore;
+          let temp = await Schedule.findOneAndUpdate(
+            { slugFirst: playerFound.slugTeam },
+            {
+              $set: {
+                firstScore: banthang + 1,
+              },
+            }
+          );
         }
-      );
-      const updateScore = new Score(formData);
-      updateScore.save();
-      res.redirect("/match-results/" + req.params.id + "/show");
+        const updateScore = new Score(formData);
+        updateScore.save();
+        res.redirect("/match-results/" + req.params.id + "/show");
+      }
     }
   }
 }

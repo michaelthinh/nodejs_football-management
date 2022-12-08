@@ -7,7 +7,7 @@
             <div class="section_title">KẾT QUẢ TRẬN ĐẤU</div>
              {{#if err}}
             <div class="mt-4 text-center" style="display:block">
-                <b style="color:red">Cầu thủ đã nhập hoặc thời gian ghi bàn không hợp lệ</b>
+                <b style="color:red">Cầu thủ đã nhập hoặc thời gian ghi bàn không hợp lệ hoặc không tồn tại</b>
             </div>
             {{/if}}
             <div class="mt-4" style="justify-content:right;align-items:right;text-align:right">
@@ -32,27 +32,39 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
+                                    <label for="firstScoreTemp">Tỉ số đội 1</label>
+                                    <input type="number" class="form-control" id="firstScoreTemp" name="firstScoreTemp"
+                                        value="{{match.firstScore}}"disabled="disabled">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="secondScoreTemp">Tỉ số đội 2</label>
+                                    <input type="number" class="form-control" id="secondScoreTemp" name="secondScoreTemp"
+                                        value="{{match.secondScore}}"disabled="disabled">
+                                </div>
+                            </div>
+                             <div style="display:none" class="form-group row">
+                                <div class="col-sm-6">
                                     <label for="firstScore">Tỉ số đội 1</label>
                                     <input type="number" class="form-control" id="firstScore" name="firstScore"
-                                        value="{{match.firstScore}}"disabled="disabled">
+                                        value="{{match.firstScore}}">
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="secondScore">Tỉ số đội 2</label>
                                     <input type="number" class="form-control" id="secondScore" name="secondScore"
-                                        value="{{match.secondScore}}"disabled="disabled">
+                                        value="{{match.secondScore}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div style="display:none" class="col-sm-6">
                                     <label for="teamWin"></label>
                                     <input type="text" class="form-control " id="teamWin" name="teamWin" value="tie"
-                                        disabled="disabled">
+                                        >
                                         <label for="teamLose"></label>
                                     <input type="text" class="form-control " id="teamLose" name="teamLose" value="tie"
-                                        disabled="disabled">
+                                       >
                                         <label for="slugFirst"></label>
                                     <input type="text" class="form-control " id="slugFirst" name="slugFirst" value="{{match.slugFirst}}"
-                                        disabled="disabled">
+                                        >
                                         <label for="slugSecond"></label>
                                     <input type="text" class="form-control " id="slugSecond" name="slugSecond" value="{{match.slugSecond}}"
                                         >
@@ -70,9 +82,9 @@
 
                             </div>
 
-                            {{!-- <div class="mt-4 mb-4 text-center">
-                                <button type="submit" class="btn btn-primary">Lưu lại</button>
-                            </div> --}}
+                            <div class="mt-4 mb-4 text-center">
+                                <button type="submit" class="btn btn-primary">Xác nhận</button>
+                            </div>
                         </form>
                         <table class="table mt-4">
                             <p class="mt-4 fw-bold">Danh sách cầu thủ ghi bàn</p>
