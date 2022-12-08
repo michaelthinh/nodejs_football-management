@@ -22,37 +22,37 @@
                                 <div class="col-sm-6">
                                     <label for="clubIdOne">ID đội 1</label>
                                     <input type="text" class="form-control" id="clubIdOne" name="clubIdOne"
-                                        value="{{match.slugFirst}}">
+                                        value="{{match.slugFirst}}" disabled="disabled">
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="clubIdTwo">ID đội 2</label>
                                     <input type="text" class="form-control" id="clubIdTwo" name="clubIdTwo"
-                                        value="{{match.slugSecond}}" >
+                                        value="{{match.slugSecond}}"disabled="disabled" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
                                     <label for="firstScore">Tỉ số đội 1</label>
                                     <input type="number" class="form-control" id="firstScore" name="firstScore"
-                                        value="{{match.firstScore}}">
+                                        value="{{match.firstScore}}"disabled="disabled">
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="secondScore">Tỉ số đội 2</label>
                                     <input type="number" class="form-control" id="secondScore" name="secondScore"
-                                        value="{{match.secondScore}}">
+                                        value="{{match.secondScore}}"disabled="disabled">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div style="display:none" class="col-sm-6">
                                     <label for="teamWin"></label>
                                     <input type="text" class="form-control " id="teamWin" name="teamWin" value="tie"
-                                        >
+                                        disabled="disabled">
                                         <label for="teamLose"></label>
                                     <input type="text" class="form-control " id="teamLose" name="teamLose" value="tie"
-                                        >
+                                        disabled="disabled">
                                         <label for="slugFirst"></label>
                                     <input type="text" class="form-control " id="slugFirst" name="slugFirst" value="{{match.slugFirst}}"
-                                        >
+                                        disabled="disabled">
                                         <label for="slugSecond"></label>
                                     <input type="text" class="form-control " id="slugSecond" name="slugSecond" value="{{match.slugSecond}}"
                                         >
@@ -60,19 +60,19 @@
                                 <div class="col-sm-6">
                                     <label for="date">Thời gian</label>
                                     <input type="text" class="form-control" id="date" name="date" value="{{match.date}}"
-                                        >
+                                       disabled="disabled" >
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="stadium">Sân vận động</label>
                                     <input type="text" class="form-control" id="stadium" name="stadium"
-                                        value="{{match.stadium}}"   >
+                                        value="{{match.stadium}}" disabled="disabled"  >
                                 </div>
 
                             </div>
 
-                            <div class="mt-4 mb-4 text-center">
+                            {{!-- <div class="mt-4 mb-4 text-center">
                                 <button type="submit" class="btn btn-primary">Lưu lại</button>
-                            </div>
+                            </div> --}}
                         </form>
                         <table class="table mt-4">
                             <p class="mt-4 fw-bold">Danh sách cầu thủ ghi bàn</p>

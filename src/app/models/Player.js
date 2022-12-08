@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 mongoose.plugin(slug);
 const players = new Schema({
   name: { type: String },
-  slugId: { type: String, slug: "name", unique: true },
+  slugId: { type: String, slug: "name" },
   birthday: { type: Date },
   typePlayer: { type: String },
   goals: { type: Number },

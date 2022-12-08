@@ -7,7 +7,6 @@ class RegistrationFormController {
   }
   async store(req, res, next) {
     const formData = { ...req.body };
-
     let newClubScore = {
       name: formData.clubName,
       wins: 0,

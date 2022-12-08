@@ -1,5 +1,6 @@
 const { Club } = require("../models/Club");
 const { Player } = require("../models/Player");
+const { Score } = require("../models/Score");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 
@@ -41,7 +42,10 @@ class PlayerController {
       );
     }
 
-    Player.updateOne({ slugId: req.params.id }, req.body)
+    const updatePlayerTwo = await Player.updateOne(
+      { slugId: req.params.id },
+      req.body
+    )
       .then(() => res.redirect("/club/" + clubId))
       .catch(next);
   }

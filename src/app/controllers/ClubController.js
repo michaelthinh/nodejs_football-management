@@ -4,6 +4,7 @@ const { Rule } = require("../models/Rule");
 const { ClubScore } = require("../models/ClubScore");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
+const { Score } = require("../models/Score");
 
 class ClubController {
   async index(req, res, next) {
@@ -18,7 +19,14 @@ class ClubController {
     } else {
       club.qualified = false;
     }
-
+    const updateClubScore = await ClubScore.findOneAndUpdate(
+      { slug: club.slug },
+      {
+        $set: {
+          qualified: club.qualified,
+        },
+      }
+    );
     Club.updateOne({ slug: req.params.id }, club)
       .then(() => {
         res.render("club/show", {
@@ -35,7 +43,6 @@ class ClubController {
   }
   async store(req, res, next) {
     const formData = { ...req.body };
-
     const player = new Player(formData);
     const clubFound = await Club.findOne({ slug: formData.slugTeam });
     if (formData.typePlayer === "Ngoại") {
@@ -48,10 +55,15 @@ class ClubController {
         }
       );
     }
+    let err;
+    const clubId = player.slugTeam;
     player
       .save()
       .then(() => res.redirect("/club/" + player.slugTeam))
-      .catch((error) => {});
+      .catch((next) => {
+        err = true;
+        res.render("player/create", { err: err, clubId: clubId });
+      });
   }
   updateClub(req, res, next) {
     Club.updateOne({ slug: req.params.id }, req.body)
@@ -80,6 +92,9 @@ class ClubController {
         }
       );
     }
+    const deletePlayerScore = await Score.deleteMany({
+      slugPlayer: player.slugId,
+    });
     const clubId = player.slugTeam;
     Player.deleteOne({ _id: req.params.id })
       .then(() => res.redirect("/club/" + clubId))

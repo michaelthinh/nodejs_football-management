@@ -18,63 +18,31 @@
             <div class="mt-4 mb-4 text-center">
                 <b>Kết quả hiện tại</b>
             </div>
-            <div class="d-flex row ms-4">
-                <div class="col-2 mt-4 mb-4 text-center">
-                    <ul style="list-style-type: none">
-                        <li class="fw-bold">Tên đội bóng</li>
-                        {{#each clubs}}
-                        <li class="mt-4 mb-4">{{this.clubName}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
-                <div class="col-2 mt-4 mb-4 text-center">
-                    <ul style="list-style-type: none">
-                        <li class="fw-bold">Tổng số trận</li>
-                         {{#each matches}}
-                        <li class="mt-4 mb-4">{{this}}</li>
-                        {{/each}}
-                        <li class="mt-4 mb-4"></li>
-                   
-                    </ul>
-                </div>
-                <div class="col-2 mt-4 mb-4 text-center">
-                    <ul style="list-style-type: none">
-                        <li class="fw-bold">Số trận thắng</li>
-                        {{#each wins}}
-                        <li class="mt-4 mb-4">{{this}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
-                <div class="col-2 mt-4 mb-4 text-center">
-                    <ul style="list-style-type: none">
-                        <li class="fw-bold">Số trận thua</li>
-                        {{#each loses}}
-                        <li class="mt-4 mb-4">{{this}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
-                <div class="col-2 mt-4 mb-4 text-center">
-                    <ul style="list-style-type: none">
-                        <li class="fw-bold">Số trận hòa</li>
-                       {{#each ties}}
-                        <li class="mt-4 mb-4">{{this}}</li>
-                        {{/each}}
-                        <li class="mt-4 mb-4"></li>
-                     
-                    </ul>
-                </div>
+            <table class="table mt-4">
                 
-                <div class="col-2 mt-4 mb-4 text-center">
-                    <ul style="list-style-type: none">
-                        <li class="fw-bold">Tổng điểm</li>
-                         {{#each points}}
-                        <li class="mt-4 mb-4">{{this}}</li>
-                        {{/each}}
-                        <li class="mt-4 mb-4"></li>
-                   
-                    </ul>
-                </div>
-            </div>
+                <thead style="text-align:center">
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên đội bóng</th>
+                        <th scope="col">Số trận thắng</th>
+                        <th scope="col">Số trận thua</th>
+                        <th scope="col">Số trận hòa</th>
+                        <th scope="col">Hiệu số</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    {{#each clubScoreboard}}
+                    <tr>
+                        <td>{{sum @index 1}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.wins}}</td>
+                        <td>{{this.loses}}</td>
+                        <td>{{this.ties}}</td>
+                        <td>{{this.points}}</td>
+                    {{/each}}
+                    </tr>
+                </tbody>
+            </table>
 
         </div>
     </div>

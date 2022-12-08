@@ -9,12 +9,7 @@ const { MongooseToObject } = require("../../util/mongoose");
 
 class TournamentReport {
   async showClub(req, res, next) {
-    let wins = [];
-    let loses = [];
-    let matches = [];
-    let ties = [];
-    let points = [];
-    let clubs = await Club.find({ qualified: "true" });
+    let clubs = await Club.find({ qualified: true });
     const ruleFive = await Rule.findOne({ slug: "rule-5" });
     const winScore = ruleFive.winScore;
     const loseScore = ruleFive.loseScore;
@@ -37,26 +32,19 @@ class TournamentReport {
           $set: {
             wins: numberWins.length,
             loses: numberLoses.length,
-            ties: numberTies.length,
+            ties: numberTies,
             points: totalPoints,
           },
         }
       );
-      points.push(totalPoints);
-      matches.push(numberMatches.length);
-      wins.push(numberWins.length);
-      loses.push(numberLoses.length);
-      ties.push(numberTies);
     }
-
-    res.render("tournament-report", {
-      clubs: multipleMongooseToObject(clubs),
-      points,
-      wins,
-      matches,
-      loses,
-      ties,
-    });
+    const clubHehe = await ClubScore.find({ qualified: true })
+      .then((clubScoreboard) => {
+        res.render("tournament-report", {
+          clubScoreboard: multipleMongooseToObject(clubScoreboard),
+        });
+      })
+      .catch(next);
   }
   async showPlayer(req, res) {
     let players = await Player.find({});

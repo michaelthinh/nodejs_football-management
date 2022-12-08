@@ -11,6 +11,7 @@ const clubscores = new Schema({
   ties: { type: Number },
   points: { type: Number },
   slug: { type: String, slug: "name" },
+  qualified: { type: Boolean, default: false },
 });
 
 const ClubScore = mongoose.model("clubscores", clubscores);
