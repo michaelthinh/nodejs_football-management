@@ -3,6 +3,7 @@ const { Player } = require("../models/Player");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 const { Schedule } = require("../models/Schedule");
+const { Rule } = require("../models/Rule");
 
 class MatchResults {
   index(req, res, next) {
@@ -32,10 +33,7 @@ class MatchResults {
       req.body.teamWin = req.body.slugSecond;
       req.body.teamLose = req.body.slugFirst;
     }
-    // if (req.body.firstScore === req.body.secondScore) {
-    //   req.body.teamWin = "tie";
-    //   req.body.teamLose = "tie";
-    // }
+
     Schedule.updateOne({ _id: req.params.id }, req.body)
       .then(() => {
         res.redirect("/match-results");
@@ -45,12 +43,18 @@ class MatchResults {
   async store(req, res, next) {
     const formData = req.body;
     const idPlayer = formData.slugPlayer;
+    const scoreMinute = formData.scoreMinute;
+    const rule = await Rule.findOne({ slug: "rule-3" });
     const match = await Schedule.findOne({ _id: req.params.id });
     const score = await Score.find({ slugMatch: req.params.id });
     let err = true;
     let banthang;
     const playerFound = await Player.findOne({ slugId: idPlayer });
-    if (playerFound === null) {
+    if (
+      playerFound === null ||
+      scoreMinute > rule.maxScoreTime ||
+      scoreMinute < 0
+    ) {
       res.render("match-results/show", {
         err,
         match: MongooseToObject(match),

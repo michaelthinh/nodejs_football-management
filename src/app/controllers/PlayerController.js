@@ -1,8 +1,9 @@
 const { Club } = require("../models/Club");
 const { Player } = require("../models/Player");
-const { Score } = require("../models/Score");
+const { Rule } = require("../models/Rule");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
+const { updateClub } = require("./ClubController");
 
 class PlayerController {
   index(req, res, next) {
@@ -21,22 +22,44 @@ class PlayerController {
     const player = await Player.findOne({ slugId: req.params.id });
     const clubFound = await Club.findOne({ slug: player.slugTeam });
     const clubId = player.slugTeam;
-    if (req.body.typePlayer === "Nội" && player.typePlayer == "Ngoại") {
+    let clubForeigner = clubFound.numberForeinger;
+    if (req.body.typePlayer === "Nội" && player.typePlayer === "Ngoại") {
       const updateClub = await Club.findOneAndUpdate(
         { slug: player.slugTeam },
         {
           $set: {
-            numberForeinger: clubFound.numberForeinger - 1,
+            numberForeinger: clubForeigner - 1,
           },
         }
       );
     }
-    if (req.body.typePlayer === "Ngoại" && player.typePlayer == "Nội") {
+    if (req.body.typePlayer === "Ngoại" && player.typePlayer === "Nội") {
       const updateClub = await Club.findOneAndUpdate(
         { slug: player.slugTeam },
         {
           $set: {
-            numberForeinger: clubFound.numberForeinger + 1,
+            numberForeinger: clubForeigner + 1,
+          },
+        }
+      );
+    }
+    const ruleFound = await Rule.findOne({ slug: "rule-1" });
+
+    if (clubForeigner === ruleFound.maxForeigner) {
+      const upClub = await Club.findOneAndUpdate(
+        { slug: player.slugTeam },
+        {
+          $set: {
+            qualified: false,
+          },
+        }
+      );
+    } else if (clubForeigner === ruleFound.maxForeigner + 1) {
+      const upClub = await Club.findOneAndUpdate(
+        { slug: player.slugTeam },
+        {
+          $set: {
+            qualified: true,
           },
         }
       );

@@ -5,7 +5,12 @@
             <div class="section_title">THÊM CẦU THỦ</div>
              {{#if err}}
             <div class="mt-4 text-center" style="display:block">
-                <b style="color:red">Không thể thêm cầu thủ trùng với cầu thủ hiện tại</b>
+                <b style="color:red">Không thể thêm cầu thủ trùng với cầu thủ hiện tại hoặc số tuổi đã nhập không đúng quy định</b>
+            </div>
+            {{/if}}
+             {{#if error}}
+            <div class="mt-4 text-center" style="display:block">
+                <b style="color:red">Không thể thêm cầu thủ ngoại cho đội</b>
             </div>
             {{/if}}
             <div class="container mt-4 align-items-center">
@@ -26,8 +31,8 @@
                                 <input type="text" class="form-control" value="0" id="goals" name="goals">
                             </div>
                             <div class="mb-3">
-                                <label for="birthday" class="form-label">Ngày sinh</label>
-                                <input type="text" class="form-control" id="birthday" name="birthday">
+                                <label for="age" class="form-label">Tuổi</label>
+                                <input type="text" class="form-control" id="age" name="age">
                             </div>
                             <div class="mb-3">
                                 <label for="typePlayer" class="form-label">Loại cầu thủ</label>

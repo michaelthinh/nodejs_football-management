@@ -5,7 +5,7 @@ mongoose.plugin(slug);
 const players = new Schema({
   name: { type: String },
   slugId: { type: String, slug: "name" },
-  birthday: { type: Date },
+  age: { type: Number },
   typePlayer: { type: String },
   goals: { type: Number },
   createdAt: { type: Date, default: Date.now },

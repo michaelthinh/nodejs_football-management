@@ -1,7 +1,8 @@
 const { Rule } = require("../models/Rule");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
-
+const { Club } = require("../models/Club");
+const { Score } = require("../models/Score");
 class RulesChangingRouter {
   index(req, res, next) {
     const dieuhuong = req.params.id;
@@ -32,6 +33,28 @@ class RulesChangingRouter {
           rule: MongooseToObject(rule),
         });
       } else {
+        console.log(req.body.maxForeigner);
+        let teamFoundOne = await Club.updateMany(
+          { numberForeinger: { $gt: req.body.maxForeigner } },
+          {
+            $set: {
+              qualified: false,
+            },
+          }
+        );
+        let teamFoundTwo = await Club.updateMany(
+          {
+            $and: [
+              { numberForeinger: { $gt: 0 } },
+              { numberForeinger: { $lte: req.body.maxForeigner } },
+            ],
+          },
+          {
+            $set: {
+              qualified: true,
+            },
+          }
+        );
         Rule.updateOne({ slug: req.params.id }, req.body)
           .then(() => {
             res.redirect("/rules-changing");
@@ -47,6 +70,9 @@ class RulesChangingRouter {
           rule: MongooseToObject(rule),
         });
       } else {
+        const playerFixed = await Score.deleteMany({
+          scoreMinute: { $gt: req.body.maxScoreTime },
+        });
         Rule.updateOne({ slug: req.params.id }, req.body)
           .then(() => {
             res.redirect("/rules-changing");

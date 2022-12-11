@@ -45,25 +45,40 @@ class ClubController {
     const formData = { ...req.body };
     const player = new Player(formData);
     const clubFound = await Club.findOne({ slug: formData.slugTeam });
-    if (formData.typePlayer === "Ngoại") {
-      const updateClub = await Club.findOneAndUpdate(
-        { slug: formData.slugTeam },
-        {
-          $set: {
-            numberForeinger: clubFound.numberForeinger + 1,
-          },
-        }
-      );
-    }
+    const ruleFound = await Rule.findOne({ slug: "rule-1" });
+    let maxForeigner = ruleFound.maxForeigner;
+    let clubForeigner = clubFound.numberForeinger;
     let err;
+    let error;
     const clubId = player.slugTeam;
-    player
-      .save()
-      .then(() => res.redirect("/club/" + player.slugTeam))
-      .catch((next) => {
-        err = true;
-        res.render("player/create", { err: err, clubId: clubId });
-      });
+    if (formData.age < ruleFound.minAge || formData.age > ruleFound.maxAge) {
+      err = true;
+      res.render("player/create", { err: err, clubId: clubId });
+    } else {
+      if (maxForeigner === clubForeigner && req.body.typePlayer === "Ngoại") {
+        error = true;
+        res.render("player/create", { error: error, clubId: clubId });
+      } else {
+        const clubId = player.slugTeam;
+        if (formData.typePlayer === "Ngoại") {
+          const updateClub = await Club.findOneAndUpdate(
+            { slug: formData.slugTeam },
+            {
+              $set: {
+                numberForeinger: clubFound.numberForeinger + 1,
+              },
+            }
+          );
+        }
+        player
+          .save()
+          .then(() => res.redirect("/club/" + player.slugTeam))
+          .catch((next) => {
+            err = true;
+            res.render("player/create", { err: err, clubId: clubId });
+          });
+      }
+    }
   }
   updateClub(req, res, next) {
     Club.updateOne({ slug: req.params.id }, req.body)
