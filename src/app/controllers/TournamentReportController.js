@@ -6,9 +6,12 @@ const { Rule } = require("../models/Rule");
 const results = require("./MatchResultsController");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
-
+const session = require("express-session");
 class TournamentReport {
   async showClub(req, res, next) {
+    if (!req.session.user) {
+      res.redirect("/log-in");
+    }
     let clubs = await Club.find({ qualified: true });
     const ruleFive = await Rule.findOne({ slug: "rule-5" });
     const winScore = ruleFive.winScore;

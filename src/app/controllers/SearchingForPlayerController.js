@@ -1,9 +1,12 @@
 const { Player } = require("../models/Player");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
-
+const session = require("express-session");
 class SearchingForPlayerController {
   index(req, res) {
+    if (!req.session.user) {
+      res.redirect("/log-in");
+    }
     res.render("searching-for-player");
   }
   search(req, res, next) {

@@ -2,9 +2,10 @@ const { Club } = require("../models/Club");
 const { Player } = require("../models/Player");
 const { Rule } = require("../models/Rule");
 const { ClubScore } = require("../models/ClubScore");
+const { Score } = require("../models/Score");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
-const { Score } = require("../models/Score");
+const session = require("express-session");
 
 class ClubController {
   async index(req, res, next) {

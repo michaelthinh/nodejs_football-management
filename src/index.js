@@ -28,13 +28,14 @@ app.use(methodOverride("_method"));
 // HTTP logger
 // app.use(morgan("combined"));
 
-app.set("trust proxy", 1); // trust first proxy
 app.use(
   session({
-    secret: "'keyboard cat'",
+    secret: "secret string",
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
+    saveUninitialized: false,
+    cookie: {
+      /* can add cookie related info here */
+    },
   })
 );
 

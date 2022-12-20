@@ -1,14 +1,19 @@
+
+           
 <body class="random-gradient">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img width="100%" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+      <div class="col-md-9 col-lg-6 col-xl-5 mt-4 mb-4 ">
+        <img width="100%" src="https://cdn.britannica.com/51/190751-050-147B93F7/soccer-ball-goal.jpg"
           class="img-fluid" alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form method="POST" action="/log-in/check">
 
+       
 
+
+         
         <div class="form-outline mb-4">
           <label class="form-label" for="username">Username</label>
           <input type="text" id="username" name="username" class="form-control form-control-lg"
@@ -30,9 +35,16 @@
         </div>
 
         </form>
+        {{#if err}}
+            <div class="mt-4 text-center" style="display:block">
+                <b style="color:red">Tài khoản hoặc mật khẩu không tồn tại</b>
+            </div>
+            {{/if}}
+
       </div>
     </div>
   </div>
 
 
 </div>
+ {{>footer}}

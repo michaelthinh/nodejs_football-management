@@ -3,7 +3,7 @@ const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 const { Player } = require("../models/Player");
 const { Schedule } = require("../models/Schedule");
-
+const session = require("express-session");
 class ScoreController {
   async destroy(req, res, next) {
     const score = await Score.findOne({ _id: req.params.id });

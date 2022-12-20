@@ -3,8 +3,12 @@ const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 const { Club } = require("../models/Club");
 const { Score } = require("../models/Score");
+const session = require("express-session");
 class RulesChangingRouter {
   index(req, res, next) {
+    if (!req.session.user) {
+      res.redirect("/log-in");
+    }
     const dieuhuong = req.params.id;
     Rule.findOne({ slug: dieuhuong })
       .then((rule) => {

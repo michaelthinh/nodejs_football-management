@@ -2,8 +2,12 @@ const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 const { Club } = require("../models/Club");
 const { Schedule } = require("../models/Schedule");
+const session = require("express-session");
 class SetUpSchedule {
   index(req, res, next) {
+    if (!req.session.user) {
+      res.redirect("/log-in");
+    }
     Schedule.find({})
       .then((schedule) => {
         res.render("set-up-schedule", {

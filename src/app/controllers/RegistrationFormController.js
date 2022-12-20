@@ -1,8 +1,12 @@
 const { TRUE } = require("node-sass");
 const { Club } = require("../models/Club");
 const { ClubScore } = require("../models/ClubScore");
+const session = require("express-session");
 class RegistrationFormController {
   index(req, res) {
+    if (!req.session.user) {
+      res.redirect("/log-in");
+    }
     res.render("registration-form");
   }
   async store(req, res, next) {

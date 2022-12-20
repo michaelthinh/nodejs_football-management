@@ -4,7 +4,7 @@ const { Rule } = require("../models/Rule");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 const { updateClub } = require("./ClubController");
-
+const session = require("express-session");
 class PlayerController {
   index(req, res, next) {
     res.render("player/edit");

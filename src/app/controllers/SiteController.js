@@ -5,8 +5,12 @@ const { ClubScore } = require("../models/ClubScore");
 const { Schedule } = require("../models/Schedule");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
+const session = require("express-session");
 class SiteController {
   index(req, res, next) {
+    if (!req.session.user) {
+      res.redirect("/log-in");
+    }
     Club.find({})
       .then((clubs) => {
         res.render("home", {
@@ -40,6 +44,10 @@ class SiteController {
         .then(() => res.redirect("/home"))
         .catch(next);
     }
+  }
+  logOut(req, res, next) {
+    delete req.session.user;
+    res.redirect("/log-in");
   }
 }
 

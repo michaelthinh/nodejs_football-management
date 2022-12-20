@@ -1,12 +1,16 @@
 const { Score } = require("../models/Score");
 const { Player } = require("../models/Player");
-const { multipleMongooseToObject } = require("../../util/mongoose");
-const { MongooseToObject } = require("../../util/mongoose");
 const { Schedule } = require("../models/Schedule");
 const { Rule } = require("../models/Rule");
+const session = require("express-session");
+const { multipleMongooseToObject } = require("../../util/mongoose");
+const { MongooseToObject } = require("../../util/mongoose");
 
 class MatchResults {
   index(req, res, next) {
+    if (!req.session.user) {
+      res.redirect("/log-in");
+    }
     Schedule.find({})
       .then((schedule) => {
         res.render("match-results", {
@@ -84,11 +88,11 @@ class MatchResults {
           }
         );
         let clubGoal = await Schedule.findOne({
-          slugFirst: playerFound.slugTeam,
+          $and: [{ _id: match.id }, { slugFirst: playerFound.slugTeam }],
         });
         if (clubGoal === null) {
           clubGoal = await Schedule.findOne({
-            slugSecond: playerFound.slugTeam,
+            $and: [{ _id: match.id }, { slugSecond: playerFound.slugTeam }],
           });
           let banthang = clubGoal.secondScore;
           let temp = await Schedule.findOneAndUpdate(
