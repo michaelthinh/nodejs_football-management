@@ -13,25 +13,34 @@
                     <button class=" btn btn-primary check-all-submit-btn">Cầu thủ</button>
                 </a>
             </div>
-
-
             <div class="mt-4 mb-4 text-center">
                 <b>Kết quả hiện tại</b>
             </div>
             <table class="table mt-4">
-                
+
                 <thead style="text-align:center">
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">Tên đội bóng</th>
-                        <th scope="col">Số trận thắng</th>
-                        <th scope="col">Số trận thua</th>
-                        <th scope="col">Số trận hòa</th>
-                        <th scope="col">Tổng điểm</th>
+                        <th scope="col">Số trận thắng
+                            {{{sortable "wins" _sort}}}
+                        </th>
+
+                        <th scope="col">Số trận thua
+                            {{{sortable "loses" _sort}}}
+                        </th>
+
+                        <th scope="col">Số trận hòa
+                            {{{sortable "ties" _sort}}}
+                        </th>
+
+                        <th scope="col">Tổng điểm
+                            {{{sortable "points" _sort}}}
+                        </th>
                     </tr>
                 </thead>
                 <tbody style="text-align:center">
-                    {{#each clubScoreboard}}
+                    {{#each clubHehe}}
                     <tr>
                         <td>{{sum @index 1}}</td>
                         <td>{{this.name}}</td>
@@ -39,7 +48,7 @@
                         <td>{{this.loses}}</td>
                         <td>{{this.ties}}</td>
                         <td>{{this.points}}</td>
-                    {{/each}}
+                        {{/each}}
                     </tr>
                 </tbody>
             </table>

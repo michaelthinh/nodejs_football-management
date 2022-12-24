@@ -12,6 +12,7 @@ class TournamentReport {
     if (!req.session.user) {
       res.redirect("/log-in");
     }
+
     let clubs = await Club.find({ qualified: true });
     const ruleFive = await Rule.findOne({ slug: "rule-5" });
     const winScore = ruleFive.winScore;
@@ -41,19 +42,30 @@ class TournamentReport {
         }
       );
     }
-    const clubHehe = await ClubScore.find({ qualified: true })
-      .then((clubScoreboard) => {
-        res.render("tournament-report", {
-          clubScoreboard: multipleMongooseToObject(clubScoreboard),
-        });
+    let clubHehe = ClubScore.find({ qualified: "true" });
+    if (req.query.hasOwnProperty("_sort")) {
+      clubHehe = clubHehe.sort({
+        [req.query.column]: req.query.type,
+      });
+    }
+    Promise.all([clubHehe]).then(([clubHehe]) =>
+      res.render("tournament-report", {
+        clubHehe: multipleMongooseToObject(clubHehe),
       })
-      .catch(next);
+    );
   }
-  async showPlayer(req, res) {
-    let players = await Player.find({});
-    res.render("tournament-report-sub", {
-      players: multipleMongooseToObject(players),
-    });
+  showPlayer(req, res) {
+    let players = Player.find({});
+    if (req.query.hasOwnProperty("_sort")) {
+      players = players.sort({
+        [req.query.column]: req.query.type,
+      });
+    }
+    Promise.all([players]).then(([players]) =>
+      res.render("tournament-report-sub", {
+        players: multipleMongooseToObject(players),
+      })
+    );
   }
 }
 

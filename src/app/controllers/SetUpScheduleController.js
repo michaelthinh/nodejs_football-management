@@ -2,6 +2,8 @@ const { multipleMongooseToObject } = require("../../util/mongoose");
 const { MongooseToObject } = require("../../util/mongoose");
 const { Club } = require("../models/Club");
 const { Schedule } = require("../models/Schedule");
+const { Score } = require("../models/Score");
+const { Player } = require("../models/Player");
 const session = require("express-session");
 class SetUpSchedule {
   index(req, res, next) {
@@ -35,7 +37,7 @@ class SetUpSchedule {
   create(req, res, next) {
     res.render("match-results/create");
   }
-  destroy(req, res, next) {
+  async destroy(req, res, next) {
     Schedule.deleteOne({ _id: req.params.id })
       .then(() => res.redirect("/set-up-schedule"))
       .catch(next);
